@@ -1,3 +1,17 @@
+<!-- Chosen Palette: Vibrant & Professional (#073B4C, #118AB2, #06D6A0, #FFD166, #EF476F) -->
+<!-- 
+Application Structure Plan: 
+The application uses a single-column, narrative-driven structure to guide the new technician chronologically through their onboarding. This was chosen for its clarity, mobile-friendliness, and to solve the layout-balancing issues of multi-column designs. The user flow is top-to-bottom, starting with a welcome, moving to the core Onboarding Roadmap, then presenting key data (Training, Goals, Links) in a digestible three-column grid, followed by daily responsibilities and required applications. This structure tells a clear story and ensures a seamless user experience.
+-->
+<!-- 
+Visualization & Content Choices:
+- Onboarding Roadmap (Goal: Organize): An HTML/CSS timeline was chosen over a chart to intuitively represent a step-by-step process. No SVG/Mermaid.
+- Training Focus (Goal: Inform): Animated, proportionally-sized circles (HTML/CSS) were used instead of a static pie chart for a more dynamic and visually hierarchical presentation. No SVG/Mermaid.
+- Performance Goals (Goal: Inform): Animated stat cards (HTML/CSS) highlight key metrics with a "big number" approach for immediate impact. No SVG/Mermaid.
+- Lists (Checklist, Links): Styled HTML lists with emojis/icons were used for maximum clarity and scannability. No SVG/Mermaid.
+- Applications (Goal: Organize): A responsive grid of cards with clear download buttons for different platforms provides a clean, user-friendly directory. No SVG/Mermaid.
+-->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -174,12 +188,44 @@
         </main>
 
         <footer class="mt-12 text-center">
-            <div class="max-w-xl mx-auto bg-white rounded-2xl shadow-lg p-6">
-                <h3 class="text-2xl font-bold text-[#073B4C] mb-4">Technician Resources</h3>
-                <p class="text-sm text-slate-500 mb-6">Click the button below to access all necessary files, guides, and software from our shared Google Drive.</p>
-                <a href="https://drive.google.com/drive/folders/1UDZe3LzJsz6nq4ZT-nHQFzJnM6KFyDZz?usp=sharing" target="_blank" rel="noopener noreferrer" class="block w-full bg-[#EF476F] text-white font-bold py-3 px-4 rounded-lg hover:bg-[#d83c61] transition-colors duration-300">
-                    Open Resource Folder
-                </a>
+            <!-- New Side-by-Side Section -->
+            <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Technician Resources Box -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col">
+                    <h3 class="text-2xl font-bold text-[#073B4C] mb-4">Technician Resources</h3>
+                    <p class="text-sm text-slate-500 mb-6 flex-grow">Access all necessary files, guides, and software from our shared Google Drive.</p>
+                    <a href="https://drive.google.com/drive/folders/1UDZe3LzJsz6nq4ZT-nHQFzJnM6KFyDZz?usp=sharing" target="_blank" rel="noopener noreferrer" class="block w-full mt-auto bg-[#EF476F] text-white font-bold py-3 px-4 rounded-lg hover:bg-[#d83c61] transition-colors duration-300">
+                        Open Resource Folder
+                    </a>
+                </div>
+
+                <!-- Applications You Need Box -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col">
+                    <h3 class="text-2xl font-bold text-[#073B4C] mb-6 text-center">Applications You Need</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+                        <div class="p-2 bg-slate-100 rounded-lg">
+                            <h4 class="font-bold text-md text-slate-800 mb-3 flex items-center justify-center gap-2"><span>🎋</span>BambooHR</h4>
+                            <div class="flex justify-center gap-2">
+                                <a href="https://apps.apple.com/us/app/bamboohr/id588882444" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full bg-black text-white py-2 px-2 rounded-lg hover:bg-gray-800 transition-colors text-sm"> App Store</a>
+                                <a href="https://play.google.com/store/apps/details?id=com.bamboohr.android" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full bg-green-500 text-white py-2 px-2 rounded-lg hover:bg-green-600 transition-colors text-sm">🤖 Play</a>
+                            </div>
+                        </div>
+                        <div class="p-2 bg-slate-100 rounded-lg">
+                            <h4 class="font-bold text-md text-slate-800 mb-3 flex items-center justify-center gap-2"><span>⭐</span>Deputy</h4>
+                            <div class="flex justify-center gap-2">
+                                <a href="https://apps.apple.com/us/app/deputy-shift-work-schedule/id485325999" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full bg-black text-white py-2 px-2 rounded-lg hover:bg-gray-800 transition-colors text-sm"> App Store</a>
+                                <a href="https://play.google.com/store/apps/details?id=com.deputy.android" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full bg-green-500 text-white py-2 px-2 rounded-lg hover:bg-green-600 transition-colors text-sm">🤖 Play</a>
+                            </div>
+                        </div>
+                        <div class="p-2 bg-slate-100 rounded-lg">
+                            <h4 class="font-bold text-md text-slate-800 mb-3 flex items-center justify-center gap-2"><span>🔑</span>Kisi</h4>
+                            <div class="flex justify-center gap-2">
+                                <a href="https://apps.apple.com/us/app/kisi/id575926955" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full bg-black text-white py-2 px-2 rounded-lg hover:bg-gray-800 transition-colors text-sm"> App Store</a>
+                                <a href="https://play.google.com/store/apps/details?id=com.kisi.android" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full bg-green-500 text-white py-2 px-2 rounded-lg hover:bg-green-600 transition-colors text-sm">🤖 Play</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
