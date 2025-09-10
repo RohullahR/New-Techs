@@ -1,12 +1,12 @@
 <!-- Chosen Palette: Vibrant & Professional (#073B4C, #118AB2, #06D6A0, #FFD166, #EF476F) -->
 <!-- 
 Application Structure Plan: 
-The application uses a single-column, narrative-driven structure to guide the new technician chronologically through their onboarding. This was chosen for its clarity, mobile-friendliness, and to solve the layout-balancing issues of multi-column designs. The user flow is top-to-bottom, starting with a welcome, moving to the core Onboarding Roadmap, then presenting key data (Training, Goals, Links) in a digestible three-column grid, followed by daily responsibilities and required applications. This structure tells a clear story and ensures a seamless user experience.
+The application uses a single-column, narrative-driven structure to guide the new technician chronologically through their onboarding. This was chosen for its clarity, mobile-friendliness, and to solve the layout-balancing issues of multi-column designs. The user flow is top-to-bottom, starting with a welcome, a video message, moving to the core Onboarding Roadmap, then presenting key data (Training, Goals, Links) in a digestible three-column grid, followed by daily responsibilities and required applications. This structure tells a clear story and ensures a seamless user experience.
 -->
 <!-- 
 Visualization & Content Choices:
 - Onboarding Roadmap (Goal: Organize): An HTML/CSS timeline was chosen over a chart to intuitively represent a step-by-step process. No SVG/Mermaid.
-- Training Focus (Goal: Inform): Animated, proportionally-sized circles (HTML/CSS) were used instead of a static pie chart for a more dynamic and visually hierarchical presentation. No SVG/Mermaid.
+- Training Focus (Goal: Inform): Animated, proportionally-sized circles with a liquid-fill effect (HTML/CSS/JS) were used instead of a static pie chart for a more dynamic and visually hierarchical presentation. No SVG/Mermaid.
 - Performance Goals (Goal: Inform): Animated stat cards (HTML/CSS) highlight key metrics with a "big number" approach for immediate impact. No SVG/Mermaid.
 - Lists (Checklist, Links): Styled HTML lists with emojis/icons were used for maximum clarity and scannability. No SVG/Mermaid.
 - Applications (Goal: Organize): A responsive grid of cards with clear download buttons for different platforms provides a clean, user-friendly directory. No SVG/Mermaid.
@@ -69,12 +69,67 @@ Visualization & Content Choices:
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             z-index: 1000;
         }
+        .liquid-circle {
+            position: relative;
+            overflow: hidden;
+            background-color: #e2e8f0;
+            --liquid-color: #ccc;
+        }
+        .liquid-circle .liquid-fill {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background-color: var(--liquid-color);
+            transition: height 1.5s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+        .liquid-circle .liquid-fill::before,
+        .liquid-circle .liquid-fill::after {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: 0;
+            left: 50%;
+            background-color: var(--liquid-color);
+            border-radius: 45%;
+            transform: translate(-50%, -75%) rotate(0deg);
+            animation: wave 7s linear infinite;
+        }
+        .liquid-circle .liquid-fill::after {
+            border-radius: 40%;
+            animation: wave 10s linear infinite;
+            opacity: 0.5;
+        }
+        @keyframes wave {
+            0% { transform: translate(-50%, -75%) rotate(0deg); }
+            100% { transform: translate(-50%, -75%) rotate(360deg); }
+        }
+        .liquid-circle .content {
+            position: relative;
+            z-index: 10;
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
     </style>
 </head>
 <body class="bg-slate-100 text-slate-800">
 
     <nav id="main-nav" class="py-3 transition-all duration-300">
         <div class="container mx-auto flex justify-center items-center gap-4 md:gap-8">
+            <a href="#welcome-video" class="text-slate-600 hover:text-[#118AB2] font-semibold">Welcome Video</a>
             <a href="#roadmap" class="text-slate-600 hover:text-[#118AB2] font-semibold">Roadmap</a>
             <a href="#metrics" class="text-slate-600 hover:text-[#118AB2] font-semibold">Metrics</a>
             <a href="#checklist" class="text-slate-600 hover:text-[#118AB2] font-semibold">Checklist</a>
@@ -91,6 +146,14 @@ Visualization & Content Choices:
         </header>
 
         <main class="space-y-12">
+
+            <!-- Welcome Video Section -->
+            <div id="welcome-video" class="bg-white rounded-2xl shadow-lg p-6 md:p-8 scroll-animate">
+                <h2 class="text-3xl font-bold text-[#073B4C] mb-6 text-center">A Welcome Message for You</h2>
+                <div class="video-container max-w-4xl mx-auto rounded-lg overflow-hidden">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/IYLe_DPQvwU?si=r4GlZg4yitsF1dqM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
 
             <!-- Onboarding Roadmap -->
             <div id="roadmap" class="bg-white rounded-2xl shadow-lg p-6 md:p-8 scroll-animate">
@@ -126,9 +189,18 @@ Visualization & Content Choices:
                     <h3 class="text-2xl font-bold text-[#073B4C] mb-4 text-center">Training Focus</h3>
                     <p class="text-sm text-slate-500 mb-6 text-center flex-grow">Your time is split across several areas for a well-rounded experience.</p>
                     <div class="flex justify-around items-center gap-2 text-center text-white">
-                        <div class="w-32 h-32 rounded-full flex flex-col justify-center items-center p-2 bg-[#118AB2]"><span class="text-3xl font-bold">30%</span><p class="text-xs mt-1">Orientation</p></div>
-                        <div class="w-36 h-36 rounded-full flex flex-col justify-center items-center p-2 bg-[#06D6A0]"><span class="text-4xl font-bold">40%</span><p class="text-sm mt-1">Hands-on</p></div>
-                        <div class="w-32 h-32 rounded-full flex flex-col justify-center items-center p-2 bg-[#FFD166]"><span class="text-3xl font-bold">30%</span><p class="text-xs mt-1">Practice</p></div>
+                        <div class="w-32 h-32 rounded-full flex flex-col justify-center items-center p-2 liquid-circle" data-fill="30" data-color="#118AB2">
+                            <div class="liquid-fill"></div>
+                            <div class="content"><span class="counter text-3xl font-bold" data-target="30" data-suffix="%">0</span><p class="text-xs mt-1">Orientation</p></div>
+                        </div>
+                        <div class="w-36 h-36 rounded-full flex flex-col justify-center items-center p-2 liquid-circle" data-fill="40" data-color="#06D6A0">
+                             <div class="liquid-fill"></div>
+                            <div class="content"><span class="counter text-4xl font-bold" data-target="40" data-suffix="%">0</span><p class="text-sm mt-1">Hands-on</p></div>
+                        </div>
+                        <div class="w-32 h-32 rounded-full flex flex-col justify-center items-center p-2 liquid-circle" data-fill="30" data-color="#FFD166">
+                             <div class="liquid-fill"></div>
+                            <div class="content"><span class="counter text-3xl font-bold" data-target="30" data-suffix="%">0</span><p class="text-xs mt-1">Practice</p></div>
+                        </div>
                     </div>
                 </div>
 
@@ -137,9 +209,9 @@ Visualization & Content Choices:
                     <h3 class="text-2xl font-bold text-[#073B4C] mb-4 text-center">Performance Goals</h3>
                     <p class="text-sm text-slate-500 mb-6 text-center flex-grow">We'll focus on these key metrics for your success and growth.</p>
                      <div class="space-y-3 text-center mt-auto">
-                        <div class="bg-slate-200/60 rounded-lg p-3"><p class="text-sm font-bold text-[#073B4C]">Daily Repairs</p><p class="counter text-3xl font-black text-[#118AB2]" data-target="15">0</p></div>
-                        <div class="bg-slate-200/60 rounded-lg p-3"><p class="text-sm font-bold text-[#073B4C]">QC Success Rate</p><p class="counter text-3xl font-black text-[#06D6A0]" data-target="95">0</p></div>
-                        <div class="bg-slate-200/60 rounded-lg p-3"><p class="text-sm font-bold text-[#073B4C]">Turnaround Time</p><p class="counter text-3xl font-black text-[#EF476F]" data-target="35">0</p></div>
+                        <div class="bg-slate-200/60 rounded-lg p-3"><p class="text-sm font-bold text-[#073B4C]">Daily Repairs</p><p class="counter text-3xl font-black text-[#118AB2]" data-target="15" data-suffix="+">0</p></div>
+                        <div class="bg-slate-200/60 rounded-lg p-3"><p class="text-sm font-bold text-[#073B4C]">QC Success Rate</p><p class="counter text-3xl font-black text-[#06D6A0]" data-target="95" data-suffix="%">0</p></div>
+                        <div class="bg-slate-200/60 rounded-lg p-3"><p class="text-sm font-bold text-[#073B4C]">Turnaround Time</p><p class="counter text-3xl font-black text-[#EF476F]" data-target="35" data-suffix="min">0</p></div>
                     </div>
                 </div>
 
@@ -245,7 +317,7 @@ Visualization & Content Choices:
                 }
             });
 
-            // --- Scroll-Reveal Animation ---
+            // --- Animate on Scroll ---
             const animatedElements = document.querySelectorAll('.scroll-animate');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -255,21 +327,46 @@ Visualization & Content Choices:
                         // --- Animated Counters ---
                         const counters = entry.target.querySelectorAll('.counter');
                         counters.forEach(counter => {
+                            if (counter.dataset.animated) return;
+                            counter.dataset.animated = 'true';
+
                             const target = +counter.getAttribute('data-target');
+                            const suffix = counter.getAttribute('data-suffix') || '';
                             const duration = 1500;
-                            const stepTime = Math.abs(Math.floor(duration / target));
-                            let current = 0;
-                            const timer = setInterval(() => {
-                                current += 1;
+                            let start = 0;
+                            const step = (timestamp) => {
+                                if (!start) start = timestamp;
+                                const progress = Math.min((timestamp - start) / duration, 1);
+                                let current = Math.floor(progress * target);
                                 counter.textContent = current;
-                                if (current == target) {
-                                    clearInterval(timer);
-                                    if(counter.dataset.target === '95') counter.textContent += '%';
-                                    if(counter.dataset.target === '35') counter.textContent += 'min';
-                                    if(counter.dataset.target === '15') counter.textContent += '+';
+                                if (progress < 1) {
+                                    window.requestAnimationFrame(step);
+                                } else {
+                                    counter.textContent = target + suffix;
+                                    if (target === 35 && suffix === 'min') {
+                                       counter.textContent = '30-40' + suffix;
+                                    }
                                 }
-                            }, stepTime);
+                            };
+                            window.requestAnimationFrame(step);
                         });
+
+                        // --- Liquid Fill Animation ---
+                        const liquidCircles = entry.target.querySelectorAll('.liquid-circle');
+                        liquidCircles.forEach(circle => {
+                            if (circle.dataset.animated) return;
+                            circle.dataset.animated = 'true';
+
+                            const fillPercentage = circle.getAttribute('data-fill');
+                            const fillColor = circle.getAttribute('data-color');
+                            const liquidFill = circle.querySelector('.liquid-fill');
+                            
+                            if(liquidFill) {
+                                circle.style.setProperty('--liquid-color', fillColor);
+                                liquidFill.style.height = `${fillPercentage}%`;
+                            }
+                        });
+
                         observer.unobserve(entry.target);
                     }
                 });
@@ -283,3 +380,4 @@ Visualization & Content Choices:
 
 </body>
 </html>
+
