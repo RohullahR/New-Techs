@@ -170,24 +170,25 @@
                     </div>
                 </div>
             </div>
+            
             <div id="ADP Coverage" class="bg-white rounded-2xl shadow-lg p-6 md:p-8 scroll-animate">
-    <h2 class="text-3xl font-bold text-[#073B4C] mb-8 text-center">Accidental Damaged Protection</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        
-        <div class="overflow-hidden rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-            <img src="page1.png" alt="Waht is ADP?" class="w-full h-auto object-cover">
-        </div>
-        
-        <div class="overflow-hidden rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-            <img src="page2.png" alt="Examples" class="w-full h-auto object-cover">
-        </div>
-        
-        <div class="overflow-hidden rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-            <img src="page3.png" alt="When Submitting a Claim?" class="w-full h-auto object-cover">
-        </div>
+                <h2 class="text-3xl font-bold text-[#073B4C] mb-8 text-center">Accidental Damaged Protection</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <div class="overflow-hidden rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer">
+                        <img src="page1.png" alt="Waht is ADP?" class="w-full h-auto object-cover gallery-image">
+                    </div>
+                    
+                    <div class="overflow-hidden rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer">
+                        <img src="page2.png" alt="Examples" class="w-full h-auto object-cover gallery-image">
+                    </div>
+                    
+                    <div class="overflow-hidden rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer">
+                        <img src="page3.png" alt="When Submitting a Claim?" class="w-full h-auto object-cover gallery-image">
+                    </div>
 
-    </div>
-</div>
+                </div>
+            </div>
             <div id="metrics" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 scroll-animate">
                 <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col">
                     <h3 class="text-2xl font-bold text-[#073B4C] mb-4 text-center">Training Focus</h3>
@@ -300,6 +301,10 @@
 
     </div>
     
+    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center hidden z-50 p-4 transition-opacity duration-300">
+      <span id="closeModal" class="absolute top-5 right-8 text-white text-5xl font-bold hover:text-gray-400 cursor-pointer">&times;</span>
+      <img class="max-w-full max-h-full rounded-lg" id="modalImage" alt="نمای بزرگ عکس">
+    </div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // --- Sticky Navigation ---
@@ -373,10 +378,35 @@
             animatedElements.forEach(el => {
                 observer.observe(el);
             });
+
+            // ===== منطق مودال برای نمایش عکس‌ها (جدید) =====
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const closeModalBtn = document.getElementById('closeModal');
+            const galleryImages = document.querySelectorAll('.gallery-image');
+
+            galleryImages.forEach(img => {
+                img.addEventListener('click', () => {
+                    modal.classList.remove('hidden');
+                    modalImg.src = img.src;
+                });
+            });
+
+            function hideModal() {
+                modal.classList.add('hidden');
+            }
+
+            closeModalBtn.addEventListener('click', hideModal);
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    hideModal();
+                }
+            });
+            
+
         });
     </script>
 
 </body>
 </html>
-
-
