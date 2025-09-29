@@ -59,11 +59,18 @@
             position: relative;
             overflow: hidden;
             background-color: #e2e8f0;
-            --liquid-color: #ccc;
         }
-       
-       
-       
+        .liquid-fill {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #118AB2; /* فقط آبی */
+            border-radius: 50%;
+            height: 0;
+            transition: height 1.2s cubic-bezier(.23,1.01,.32,1);
+            z-index: 1;
+        }
         .liquid-circle .content {
             position: relative;
             z-index: 10;
@@ -166,15 +173,15 @@
                     <h3 class="text-2xl font-bold text-[#073B4C] mb-4 text-center">Training Focus</h3>
                     <p class="text-sm text-slate-500 mb-6 text-center flex-grow">Your time is split across several areas for a well-rounded experience.</p>
                     <div class="flex justify-around items-center gap-2 text-center text-white">
-                        <div class="w-32 h-32 rounded-full flex flex-col justify-center items-center p-2 liquid-circle" data-fill="30" data-color="#118AB2">
+                        <div class="w-32 h-32 rounded-full flex flex-col justify-center items-center p-2 liquid-circle" data-fill="30">
                             <div class="liquid-fill"></div>
                             <div class="content"><span class="counter text-3xl font-bold" data-target="30" data-suffix="%">0</span><p class="text-xs mt-1">Orientation</p></div>
                         </div>
-                        <div class="w-36 h-36 rounded-full flex flex-col justify-center items-center p-2 liquid-circle" data-fill="40" data-color="#06D6A0">
+                        <div class="w-36 h-36 rounded-full flex flex-col justify-center items-center p-2 liquid-circle" data-fill="40">
                              <div class="liquid-fill"></div>
                             <div class="content"><span class="counter text-4xl font-bold" data-target="40" data-suffix="%">0</span><p class="text-sm mt-1">Hands-on</p></div>
                         </div>
-                        <div class="w-32 h-32 rounded-full flex flex-col justify-center items-center p-2 liquid-circle" data-fill="30" data-color="#FFD166">
+                        <div class="w-32 h-32 rounded-full flex flex-col justify-center items-center p-2 liquid-circle" data-fill="30">
                              <div class="liquid-fill"></div>
                             <div class="content"><span class="counter text-3xl font-bold" data-target="30" data-suffix="%">0</span><p class="text-xs mt-1">Practice</p></div>
                         </div>
@@ -326,18 +333,16 @@
                             window.requestAnimationFrame(step);
                         });
 
-                        // --- Liquid Fill Animation ---
+                        // --- Liquid Fill Animation (only scale up, no wave) ---
                         const liquidCircles = entry.target.querySelectorAll('.liquid-circle');
                         liquidCircles.forEach(circle => {
                             if (circle.dataset.animated) return;
                             circle.dataset.animated = 'true';
 
                             const fillPercentage = circle.getAttribute('data-fill');
-                            const fillColor = circle.getAttribute('data-color');
                             const liquidFill = circle.querySelector('.liquid-fill');
-                            
                             if(liquidFill) {
-                                circle.style.setProperty('--liquid-color', fillColor);
+                                // فقط پر شدن ساده با رنگ آبی
                                 liquidFill.style.height = `${fillPercentage}%`;
                             }
                         });
@@ -351,7 +356,7 @@
                 observer.observe(el);
             });
 
-            // ===== منطق مودال برای نمایش عکس‌ها (جدید) =====
+            // ===== منطق مودال برای نمایش عکس‌ها =====
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
             const closeModalBtn = document.getElementById('closeModal');
@@ -382,5 +387,3 @@
 
 </body>
 </html>
-
-
