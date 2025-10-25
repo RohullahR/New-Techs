@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>New Technician Onboarding Workflow</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet" />
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -50,15 +50,16 @@
             top: 0;
             left: 0;
             right: 0;
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
             z-index: 1000;
         }
         .liquid-circle {
             position: relative;
             overflow: hidden;
             background-color: #e2e8f0;
+            border-radius: 9999px;
         }
         .liquid-fill {
             position: absolute;
@@ -88,7 +89,7 @@
             width: 100%;
             height: 100%;
         }
-        
+
         .app-logo {
             width: 80px;
             height: 80px;
@@ -99,12 +100,12 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.12);
             transition: all 0.3s ease;
         }
-        
+
         .app-logo:hover {
             transform: scale(1.08);
             box-shadow: 0 8px 25px rgba(0,0,0,0.18);
         }
-        
+
         .store-logo {
             width: 40px;
             height: 40px;
@@ -116,16 +117,16 @@
             transition: all 0.25s ease;
             cursor: pointer;
         }
-        
+
         .store-logo:hover {
             transform: scale(1.1);
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
-        
+
         .app-card {
             transition: all 0.3s ease;
         }
-        
+
         .app-card:hover {
             transform: translateY(-5px);
         }
@@ -141,6 +142,12 @@
             color: #2563eb; /* blue-600 */
             background-color: rgba(37,99,235,0.04);
             text-decoration: underline;
+        }
+
+        /* Small responsive tweaks */
+        @media (max-width: 640px) {
+            header { height: 320px; }
+            .text-5xl { font-size: 2rem; }
         }
     </style>
 </head>
@@ -159,85 +166,105 @@
     <div class="container mx-auto p-4 md:p-8">
 
         <header class="relative text-center mb-12 rounded-2xl shadow-lg overflow-hidden scroll-animate h-[450px]">
-            <img src="workshop2.jpg" alt="Technician workshop with a laptop being repaired" class="absolute top-0 left-0 w-full h-full object-cover">
-            
+            <img src="workshop2.jpg" alt="Technician workshop with a laptop being repaired" class="absolute top-0 left-0 w-full h-full object-cover" />
             <div class="absolute top-0 left-0 w-full h-full bg-black/60"></div>
 
             <div class="relative z-10 flex flex-col items-center justify-center h-full p-6">
-                <img src="celltech-logo-reversedwh-notag-1-192x77.png" alt="Celltech Inc. Logo" class="h-16 w-auto mb-6">
+                <img src="celltech-logo-reversedwh-notag-1-192x77.png" alt="Celltech Inc. Logo" class="h-16 w-auto mb-6" />
                 <h1 class="text-5xl md:text-7xl font-black text-white mb-4">Welcome to Celltech Inc!</h1>
                 <p class="text-2xl md:text-3xl text-slate-200">Your journey to becoming an expert technician starts here</p>
             </div>
         </header>
+
         <main class="space-y-12">
 
-            <div id="welcome-video" class="bg-white rounded-2xl shadow-lg p-6 md:p-8 scroll-animate">
+            <section id="welcome-video" class="bg-white rounded-2xl shadow-lg p-6 md:p-8 scroll-animate">
                 <h2 class="text-3xl font-bold text-[#073B4C] mb-6 text-center">A Welcome Message for You</h2>
                 <div class="video-container max-w-4xl mx-auto rounded-lg overflow-hidden">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/J5nzAT9skv0?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write;[...]
+                    <iframe
+                        width="560"
+                        height="315"
+                        src="https://www.youtube.com/embed/J5nzAT9skv0?rel=0"
+                        title="Welcome video for new technicians"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
                 </div>
-            </div>
+            </section>
 
-            <div id="roadmap" class="bg-white rounded-2xl shadow-lg p-6 md:p-8 scroll-animate">
+            <section id="roadmap" class="bg-white rounded-2xl shadow-lg p-6 md:p-8 scroll-animate">
                 <h2 class="text-3xl font-bold text-[#073B4C] mb-8 text-center">Onboarding Roadmap</h2>
                 <div class="timeline-container pl-4 max-w-4xl mx-auto">
                     <div class="timeline-item relative pl-8 pb-8">
                         <h3 class="text-xl font-bold text-[#118AB2] mb-2">Step 1: Orientation & Setup</h3>
-                        <p class="text-slate-600">We'll start your first day by introducing you to the team, showing you around the workspace — including Inventory and Quality Control — and gettin[...]
-                    </div>
-                    <div class="timeline-item relative pl-8 pb-8">
-                        <h3 class="text-xl font-bold text-[#118AB2] mb-2">Step 2: Process Training</h3>
-                        <p class="text-slate-600">You'll get to know our core RepairGenie (RG) system. Learn to log warranty vs. non-warranty devices, understand damage codes, and follow workflow step[...]
-                    </div>
-                    <div class="timeline-item relative pl-8 pb-8">
-                        <h3 class="text-xl font-bold text-[#118AB2] mb-2">Step 3: Hands-on Training Begins</h3>
-                        <p class="text-slate-600">Start with basic repairs — replacing LCD screens, keyboards, and simple component swaps — under supervision to build confidence and speed.</p>
-                    </div>
-                    <div class="timeline-item relative pl-8 pb-8">
-                        <h3 class="text-xl font-bold text-[#118AB2] mb-2">Step 4: Supervised Practice</h3>
-                        <p class="text-slate-600">Work on devices with simple issues while following documented workflows, keeping precise records, and getting feedback from leads.</p>
-                    </div>
-                    <div class="timeline-item relative pl-8">
-                        <h3 class="text-xl font-bold text-[#06D6A0] mb-2">Next Step: Independence & Growth</h3>
-                        <p class="text-slate-600">After completing assigned training and receiving approval from the technical lead, you'll begin handling more complex repairs and mentoring new traine[...]
-                    </div>
-                </div>
-            </div>
-            
-            <div id="ADP Coverage" class="bg-white rounded-2xl shadow-lg p-6 md:p-8 scroll-animate">
-                <h2 class="text-3xl font-bold text-[#073B4C] mb-8 text-center">Accidental Damaged Protection</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    
-                    <div class="overflow-hidden rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer">
-                        <img src="page1.png" alt="What is ADP?" class="w-full h-auto object-cover gallery-image">
-                    </div>
-                    
-                    <div class="overflow-hidden rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer">
-                        <img src="page2.png" alt="Examples" class="w-full h-auto object-cover gallery-image">
-                    </div>
-                    
-                    <div class="overflow-hidden rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer">
-                        <img src="page3.png" alt="When Submitting a Claim?" class="w-full h-auto object-cover gallery-image">
+                        <p class="text-slate-600">On your first day we'll introduce you to the team, tour the workspace, and complete account setup (email, time tracking, and internal tools). We'll also cover safety procedures and basic inventory checks.</p>
                     </div>
 
+                    <div class="timeline-item relative pl-8 pb-8">
+                        <h3 class="text-xl font-bold text-[#118AB2] mb-2">Step 2: Process Training</h3>
+                        <p class="text-slate-600">You will be trained on our RepairGenie (RG) system, learn how to log warranty vs. non-warranty devices, read damage codes, and follow required documentation steps for each repair workflow.</p>
+                    </div>
+
+                    <div class="timeline-item relative pl-8 pb-8">
+                        <h3 class="text-xl font-bold text-[#118AB2] mb-2">Step 3: Hands-on Training Begins</h3>
+                        <p class="text-slate-600">Start practical repairs such as LCD replacements, battery swaps, and simple component replacements under supervision to build confidence and technique.</p>
+                    </div>
+
+                    <div class="timeline-item relative pl-8 pb-8">
+                        <h3 class="text-xl font-bold text-[#118AB2] mb-2">Step 4: Supervised Practice</h3>
+                        <p class="text-slate-600">Work on real tickets with guidance from a lead technician, focus on following documented workflows, maintaining accurate records, and improving speed with quality.</p>
+                    </div>
+
+                    <div class="timeline-item relative pl-8">
+                        <h3 class="text-xl font-bold text-[#06D6A0] mb-2">Next Step: Independence & Growth</h3>
+                        <p class="text-slate-600">After completing required training and receiving approval from your technical lead, you'll take on more complex repairs, own tickets from intake to completion, and start mentoring new trainees.</p>
+                    </div>
                 </div>
-            </div>
-            <div id="metrics" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 scroll-animate">
+            </section>
+
+            <section id="ADP-Coverage" class="bg-white rounded-2xl shadow-lg p-6 md:p-8 scroll-animate">
+                <h2 class="text-3xl font-bold text-[#073B4C] mb-8 text-center">Accidental Damage Protection (ADP)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="overflow-hidden rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer">
+                        <img src="page1.png" alt="What is ADP? - explanation page" class="w-full h-auto object-cover gallery-image" />
+                    </div>
+                    <div class="overflow-hidden rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer">
+                        <img src="page2.png" alt="ADP examples and scenarios" class="w-full h-auto object-cover gallery-image" />
+                    </div>
+                    <div class="overflow-hidden rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer">
+                        <img src="page3.png" alt="Submitting a claim - ADP steps" class="w-full h-auto object-cover gallery-image" />
+                    </div>
+                </div>
+            </section>
+
+            <section id="metrics" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 scroll-animate">
                 <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col">
                     <h3 class="text-2xl font-bold text-[#073B4C] mb-4 text-center">Training Focus</h3>
                     <p class="text-sm text-slate-500 mb-6 text-center flex-grow">Your time is split across several areas for a well-rounded experience.</p>
                     <div class="flex justify-around items-center gap-2 text-center text-white">
                         <div class="w-32 h-32 rounded-full flex flex-col justify-center items-center p-2 liquid-circle" data-fill="30">
                             <div class="liquid-fill"></div>
-                            <div class="content"><span class="counter text-3xl font-bold" data-target="30" data-suffix="%">0</span><p class="text-xs mt-1">Orientation</p></div>
+                            <div class="content">
+                                <span class="counter text-3xl font-bold" data-target="30" data-suffix="%">0</span>
+                                <p class="text-xs mt-1 text-slate-800">Orientation</p>
+                            </div>
                         </div>
+
                         <div class="w-36 h-36 rounded-full flex flex-col justify-center items-center p-2 liquid-circle" data-fill="40">
-                             <div class="liquid-fill"></div>
-                            <div class="content"><span class="counter text-4xl font-bold" data-target="40" data-suffix="%">0</span><p class="text-sm mt-1">Hands-on</p></div>
+                            <div class="liquid-fill"></div>
+                            <div class="content">
+                                <span class="counter text-4xl font-bold" data-target="40" data-suffix="%">0</span>
+                                <p class="text-sm mt-1 text-slate-800">Hands-on</p>
+                            </div>
                         </div>
+
                         <div class="w-32 h-32 rounded-full flex flex-col justify-center items-center p-2 liquid-circle" data-fill="30">
-                             <div class="liquid-fill"></div>
-                            <div class="content"><span class="counter text-3xl font-bold" data-target="30" data-suffix="%">0</span><p class="text-xs mt-1">Practice</p></div>
+                            <div class="liquid-fill"></div>
+                            <div class="content">
+                                <span class="counter text-3xl font-bold" data-target="30" data-suffix="%">0</span>
+                                <p class="text-xs mt-1 text-slate-800">Practice</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -245,10 +272,20 @@
                 <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col">
                     <h3 class="text-2xl font-bold text-[#073B4C] mb-4 text-center">Performance Goals</h3>
                     <p class="text-sm text-slate-500 mb-6 text-center flex-grow">We'll focus on these key metrics for your success and growth.</p>
-                     <div class="space-y-3 text-center mt-auto">
-                        <div class="bg-slate-200/60 rounded-lg p-3"><p class="text-sm font-bold text-[#073B4C]">Daily Repairs</p><p class="counter text-3xl font-black text-[#118AB2]" data-target="15">[...]
-                        <div class="bg-slate-200/60 rounded-lg p-3"><p class="text-sm font-bold text-[#073B4C]">QC Success Rate</p><p class="counter text-3xl font-black text-[#06D6A0]" data-target="95[...]
-                        <div class="bg-slate-200/60 rounded-lg p-3"><p class="text-sm font-bold text-[#073B4C]">Turnaround Time</p><p class="counter text-3xl font-black text-[#EF476F]" data-target="35[...]
+                    <div class="space-y-3 text-center mt-auto">
+                        <div class="bg-slate-200/60 rounded-lg p-3">
+                            <p class="text-sm font-bold text-[#073B4C]">Daily Repairs</p>
+                            <p class="counter text-3xl font-black text-[#118AB2]" data-target="15">0</p>
+                        </div>
+                        <div class="bg-slate-200/60 rounded-lg p-3">
+                            <p class="text-sm font-bold text-[#073B4C]">QC Success Rate</p>
+                            <p class="counter text-3xl font-black text-[#06D6A0]" data-target="95" data-suffix="%">0</p>
+                        </div>
+                        <div class="bg-slate-200/60 rounded-lg p-3">
+                            <p class="text-sm font-bold text-[#073B4C]">Turnaround Time</p>
+                            <p class="counter text-3xl font-black text-[#EF476F]" data-target="35" data-suffix="min">0</p>
+                            <p class="text-xs text-slate-500 mt-1">Average minutes per repair</p>
+                        </div>
                     </div>
                 </div>
 
@@ -256,25 +293,51 @@
                     <h3 class="text-2xl font-bold text-[#073B4C] mb-4 text-center">Essential Links</h3>
                     <p class="text-sm text-slate-500 mb-6 text-center flex-grow">Quick access to the tools you'll use every day.</p>
                     <ul class="space-y-3 mt-auto">
-                        <li><a href="https://workshop.repairgenie.net/login" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 rounded-lg hover:bg-slate-100 transition-colors"><sp[...]
-                        <li><a href="https://pcsupport.lenovo.com/us/en/" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 rounded-lg hover:bg-slate-100 transition-colors"><span [...]
-                        <li><a href="https://support.lenovo.com/us/en/parts-lookup" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 rounded-lg hover:bg-slate-100 transition-colo[...]
-                        <li><a href="https://learning.lenovo.com/learn" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 rounded-lg hover:bg-slate-100 transition-colors"><span cl[...]
-                        <li><a href="https://passport.lenovo.com/" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 rounded-lg hover:bg-slate-100 transition-colors"><span class="[...]
+                        <li>
+                            <a href="https://workshop.repairgenie.net/login" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 rounded-lg hover:bg-slate-100 transition-colors">
+                                <span class="mr-3">🔧</span>
+                                <span>RepairGenie Workshop - Login</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://pcsupport.lenovo.com/us/en/" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 rounded-lg hover:bg-slate-100 transition-colors">
+                                <span class="mr-3">💻</span>
+                                <span>Lenovo PC Support</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://support.lenovo.com/us/en/parts-lookup" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 rounded-lg hover:bg-slate-100 transition-colors">
+                                <span class="mr-3">🔎</span>
+                                <span>Lenovo Parts Lookup</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://learning.lenovo.com/learn" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 rounded-lg hover:bg-slate-100 transition-colors">
+                                <span class="mr-3">🎓</span>
+                                <span>Lenovo Learning Portal</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://passport.lenovo.com/" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 rounded-lg hover:bg-slate-100 transition-colors">
+                                <span class="mr-3">🔐</span>
+                                <span>Lenovo Passport (Single Sign-on)</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
-            </div>
+            </section>
 
-            <div id="checklist" class="bg-white rounded-2xl shadow-lg p-6 md:p-8 scroll-animate">
+            <section id="checklist" class="bg-white rounded-2xl shadow-lg p-6 md:p-8 scroll-animate">
                 <h3 class="text-2xl font-bold text-[#073B4C] mb-4 text-center">Daily Checklist</h3>
                 <ul class="space-y-4 text-slate-700 max-w-2xl mx-auto">
                     <li class="flex items-start"><span class="text-2xl mr-3 mt-1">🛠️</span><span>Pre-QC all devices before sending them to the QC station.</span></li>
-                    <li class="flex items-start"><span class="text-2xl mr-3 mt-1">📦</span><span>Return remaining devices to their designated shelf.</span></li>
-                    <li class="flex items-start"><span class="text-2xl mr-3 mt-1">🏷️</span><span>Label returnable parts: include damage type, device model, and your credential number on the bag.<[...]
-                    <li class="flex items-start"><span class="text-2xl mr-3 mt-1">✅</span><span>Ensure all parts are scanned right after collecting them from inventory.</span></li>
-                    <li class="flex items-start"><span class="text-2xl mr-3 mt-1">🧹</span><span>Tidy up your workstation before clocking out.</span></li>
+                    <li class="flex items-start"><span class="text-2xl mr-3 mt-1">📦</span><span>Return remaining devices to their designated shelf and update inventory records.</span></li>
+                    <li class="flex items-start"><span class="text-2xl mr-3 mt-1">🏷️</span><span>Label returnable parts with damage type, device model, and your technician ID.</span></li>
+                    <li class="flex items-start"><span class="text-2xl mr-3 mt-1">✅</span><span>Ensure all parts are scanned into the system immediately after collecting them from inventory.</span></li>
+                    <li class="flex items-start"><span class="text-2xl mr-3 mt-1">🧹</span><span>Tidy up your workstation and submit end-of-day notes before clocking out.</span></li>
                 </ul>
-            </div>
+            </section>
+
         </main>
 
         <footer id="resources" class="mt-12 text-center scroll-animate">
@@ -282,7 +345,7 @@
                 <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col">
                     <h3 class="text-2xl font-bold text-[#073B4C] mb-4">Technician Resources</h3>
                     <p class="text-sm text-slate-500 mb-6 flex-grow">Access all necessary files, guides, and software from our shared Google Drive.</p>
-                    <a href="https://drive.google.com/drive/folders/1UDZe3LzJsz6nq4ZT-nHQFzJnM6KFyDZz?usp=sharing" target="_blank" rel="noopener noreferrer" class="block w-full mt-auto bg-[#EF476F] te[...]
+                    <a href="https://drive.google.com/drive/folders/1UDZe3LzJsz6nq4ZT-nHQFzJnM6KFyDZz?usp=sharing" target="_blank" rel="noopener noreferrer" class="block w-full mt-auto bg-[#EF476F] text-white font-bold py-3 px-6 rounded-lg hover:bg-[#e63a67] transition-colors">
                         Open Resource Folder
                     </a>
                 </div>
@@ -290,55 +353,54 @@
                 <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col">
                     <h3 class="text-2xl font-bold text-[#073B4C] mb-6 text-center">Applications You Need</h3>
                     <div class="grid grid-cols-2 gap-6">
-                        
                         <div class="app-card flex flex-col items-center text-center">
-                            <img src="BambooHR.png" alt="BambooHR Logo" class="app-logo mb-3">
+                            <img src="BambooHR.png" alt="BambooHR Logo" class="app-logo mb-3" />
                             <h4 class="font-bold text-slate-800 mb-3 text-sm">BambooHR</h4>
                             <div class="flex gap-3">
                                 <a href="https://apps.apple.com/us/app/bamboohr/id587244049" target="_blank" rel="noopener noreferrer">
-                                    <img src="App-Store-Logo.png" alt="App Store" class="store-logo">
+                                    <img src="App-Store-Logo.png" alt="App Store" class="store-logo" />
                                 </a>
                                 <a href="https://play.google.com/store/apps/details?id=com.mokinetworks.bamboohr" target="_blank" rel="noopener noreferrer">
-                                    <img src="Play-Store-logo.png" alt="Google Play" class="store-logo">
+                                    <img src="Play-Store-logo.png" alt="Google Play" class="store-logo" />
                                 </a>
                             </div>
                         </div>
 
                         <div class="app-card flex flex-col items-center text-center">
-                            <img src="Discord.png" alt="Discord Logo" class="app-logo mb-3">
+                            <img src="Discord.png" alt="Discord Logo" class="app-logo mb-3" />
                             <h4 class="font-bold text-slate-800 mb-3 text-sm">Discord</h4>
                             <div class="flex gap-3">
                                 <a href="https://apps.apple.com/us/app/discord-talk-play-hang-out/id985746746" target="_blank" rel="noopener noreferrer">
-                                    <img src="App-Store-Logo.png" alt="App Store" class="store-logo">
+                                    <img src="App-Store-Logo.png" alt="App Store" class="store-logo" />
                                 </a>
                                 <a href="https://play.google.com/store/apps/details?id=com.discord" target="_blank" rel="noopener noreferrer">
-                                    <img src="Play-Store-logo.png" alt="Google Play" class="store-logo">
+                                    <img src="Play-Store-logo.png" alt="Google Play" class="store-logo" />
                                 </a>
                             </div>
                         </div>
 
                         <div class="app-card flex flex-col items-center text-center">
-                            <img src="Deputy.png" alt="Deputy Logo" class="app-logo mb-3">
+                            <img src="Deputy.png" alt="Deputy Logo" class="app-logo mb-3" />
                             <h4 class="font-bold text-slate-800 mb-3 text-sm">Deputy</h4>
                             <div class="flex gap-3">
                                 <a href="https://apps.apple.com/us/app/deputy-shift-work-schedule/id477070330" target="_blank" rel="noopener noreferrer">
-                                    <img src="App-Store-Logo.png" alt="App Store" class="store-logo">
+                                    <img src="App-Store-Logo.png" alt="App Store" class="store-logo" />
                                 </a>
                                 <a href="https://play.google.com/store/apps/details?id=com.deputy.android" target="_blank" rel="noopener noreferrer">
-                                    <img src="Play-Store-logo.png" alt="Google Play" class="store-logo">
+                                    <img src="Play-Store-logo.png" alt="Google Play" class="store-logo" />
                                 </a>
                             </div>
                         </div>
 
                         <div class="app-card flex flex-col items-center text-center">
-                            <img src="Kisi.png" alt="Kisi Logo" class="app-logo mb-3">
+                            <img src="Kisi.png" alt="Kisi Logo" class="app-logo mb-3" />
                             <h4 class="font-bold text-slate-800 mb-3 text-sm">Kisi</h4>
                             <div class="flex gap-3">
                                 <a href="https://apps.apple.com/us/app/kisi/id687291321" target="_blank" rel="noopener noreferrer">
-                                    <img src="App-Store-Logo.png" alt="App Store" class="store-logo">
+                                    <img src="App-Store-Logo.png" alt="App Store" class="store-logo" />
                                 </a>
                                 <a href="https://play.google.com/store/apps/details?id=de.kisi.android" target="_blank" rel="noopener noreferrer">
-                                    <img src="Play-Store-logo.png" alt="Google Play" class="store-logo">
+                                    <img src="Play-Store-logo.png" alt="Google Play" class="store-logo" />
                                 </a>
                             </div>
                         </div>
@@ -348,21 +410,22 @@
             </div>
 
             <div class="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
-                 <a href="https://discord.com/channels/813712361415639061/813724109610942475" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-[#5865F2] text-white font-bold py-3 p[...]
+                <a href="https://discord.com/channels/813712361415639061/813724109610942475" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-[#5865F2] text-white font-bold py-3 px-6 rounded-lg hover:bg-[#4057d6] transition-colors">
                     Join our Discord
                 </a>
-                 <a href="https://www.celltech-usa.com/" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-[#073B4C] text-white font-bold py-3 px-6 rounded-lg hover:bg-[#0a5a75] tra[...]
+                <a href="https://www.celltech-usa.com/" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-[#073B4C] text-white font-bold py-3 px-6 rounded-lg hover:bg-[#0a5a75] transition-colors">
                     Celltech Website
                 </a>
             </div>
         </footer>
 
     </div>
-    
+
     <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center hidden z-50 p-4 transition-opacity duration-300">
       <span id="closeModal" class="absolute top-5 right-8 text-white text-5xl font-bold hover:text-gray-400 cursor-pointer">&times;</span>
-      <img class="max-w-full max-h-full rounded-lg" id="modalImage" alt="نمای بزرگ عکس">
+      <img class="max-w-full max-h-full rounded-lg" id="modalImage" alt="نمای بزرگ عکس" />
     </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const nav = document.getElementById('main-nav');
@@ -382,7 +445,7 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
-                        
+
                         const counters = entry.target.querySelectorAll('.counter');
                         counters.forEach(counter => {
                             if (counter.dataset.animated) return;
@@ -396,12 +459,12 @@
                                 if (!start) start = timestamp;
                                 const progress = Math.min((timestamp - start) / duration, 1);
                                 let current = Math.floor(progress * target);
-                                counter.textContent = current;
+                                counter.textContent = current + (suffix && progress === 1 ? suffix : '');
                                 if (progress < 1) {
                                     window.requestAnimationFrame(step);
                                 } else {
                                     if (suffix) {
-                                        // special case for turnaround time
+                                        // special case for turnaround time to show range
                                         if (target === 35 && suffix === 'min') {
                                             counter.textContent = '30-40' + suffix;
                                         } else {
