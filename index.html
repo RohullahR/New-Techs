@@ -65,7 +65,7 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            background: #118AB2; /* فقط آبی */
+            background: #118AB2;
             border-radius: 50%;
             height: 0;
             transition: height 1.2s cubic-bezier(.23,1.01,.32,1);
@@ -78,7 +78,7 @@
         .video-container {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            padding-bottom: 56.25%;
             height: 0;
         }
         .video-container iframe {
@@ -87,6 +87,47 @@
             left: 0;
             width: 100%;
             height: 100%;
+        }
+        
+        .app-logo {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            border-radius: 50%;
+            background: white;
+            padding: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+            transition: all 0.3s ease;
+        }
+        
+        .app-logo:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.18);
+        }
+        
+        .store-logo {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            border-radius: 50%;
+            background: white;
+            padding: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+        
+        .store-logo:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .app-card {
+            transition: all 0.3s ease;
+        }
+        
+        .app-card:hover {
+            transform: translateY(-5px);
         }
     </style>
 </head>
@@ -129,7 +170,7 @@
                 <div class="timeline-container pl-4 max-w-4xl mx-auto">
                     <div class="timeline-item relative pl-8 pb-8">
                         <h3 class="text-xl font-bold text-[#118AB2] mb-2">Step 1: Orientation & Setup</h3>
-                        <p class="text-slate-600">We’ll start your first day by introducing you to the team, showing you around the workspace—including areas like Inventory and Quality Control—and getting your systems and access set up. We'll also make sure you receive all the tools and equipment you need to begin your work confidently.</p>
+                        <p class="text-slate-600">We'll start your first day by introducing you to the team, showing you around the workspace—including areas like Inventory and Quality Control—and getting your systems and access set up. We'll also make sure you receive all the tools and equipment you need to begin your work confidently.</p>
                     </div>
                     <div class="timeline-item relative pl-8 pb-8">
                         <h3 class="text-xl font-bold text-[#118AB2] mb-2">Step 2: Process Training</h3>
@@ -137,7 +178,7 @@
                     </div>
                     <div class="timeline-item relative pl-8 pb-8">
                         <h3 class="text-xl font-bold text-[#118AB2] mb-2">Step 3: Hands-on Training Begins</h3>
-                        <p class="text-slate-600">Time to get practical! You'll begin with basic repairs—such as replacing LCD screens, keyboards, and LCD base covers—under the supervision of experienced staff. As you settle in, you’ll build your technical skills through guided, hands-on practice and close collaboration with senior technicians, observing their work and gradually taking on more tasks as your confidence grows.</p>
+                        <p class="text-slate-600">Time to get practical! You'll begin with basic repairs—such as replacing LCD screens, keyboards, and LCD base covers—under the supervision of experienced staff. As you settle in, you'll build your technical skills through guided, hands-on practice and close collaboration with senior technicians, observing their work and gradually taking on more tasks as your confidence grows.</p>
                     </div>
                     <div class="timeline-item relative pl-8 pb-8">
                         <h3 class="text-xl font-bold text-[#118AB2] mb-2">Step 4: Supervised Practice</h3>
@@ -206,7 +247,7 @@
                         <li><a href="https://pcsupport.lenovo.com/us/en/" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 rounded-lg hover:bg-slate-100 transition-colors"><span class="text-xl mr-3">💻</span><span class="text-slate-700 font-semibold">Lenovo PC Support</span></a></li>
                         <li><a href="https://support.lenovo.com/us/en/parts-lookup" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 rounded-lg hover:bg-slate-100 transition-colors"><span class="text-xl mr-3">🔍</span><span class="text-slate-700 font-semibold">Parts Look Up</span></a></li>
                         <li><a href="https://learning.lenovo.com/learn" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 rounded-lg hover:bg-slate-100 transition-colors"><span class="text-xl mr-3">🎓</span><span class="text-slate-700 font-semibold">Lenovo Learning</span></a></li>
-                        <li><a href="https://passport.lenovo.com/glbwebauthnv6/preLogin?lenovoid.action=uilogin&lenovoid.realm=seservice.PDGuide.lenovo.com&lenovoid.ctx=MTIzencode&lenovoid.lang=null&lenovoid.uinfo=null&lenovoid.cb=https://seservice.lenovo.com/login&lenovoid.vp=null&lenovoid.display=null&lenovoid_idp=null&lenovoid.source=seservice.PDGuide.lenovo.com&lenovoid.thirdname=null&lenovoid.idreinfo=null&lenovoid.autologinname=null&lenovoid.userType=null&lenovoid.sdk=null&lenovoid.oauthstate=null&lenovoid.options=null&lenovoid.hidesocial=null&lenovoid.hideregphone=1&lenovoid.hideloginreg=1&lenovoid.hidephonelogin=1&lenovoid.zoom=1&lenovoid.privacy=null&lenovoid.Terms=null&lenovoid.hidelanguage=1&lenovoid.hidegoogle=1&lenovoid.hidemicrosoft=1&lenovoid.hidefacebook=1&lenovoid.hidetwitch=1&lenovoid.hidediscord=1&lenovoid.hidesteam=1&lenovoid.theme=id&lenovoid.deviceinfo=null&lenovoid.deviceId=null&lenovoid.prompt=null" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 rounded-lg hover:bg-slate-100 transition-colors"><span class="text-xl mr-3">🔑</span><span class="text-slate-700 font-semibold">Lenovo Service Portal</span></a></li>
+                        <li><a href="https://passport.lenovo.com/glbwebauthnv6/preLogin?lenovoid.action=uilogin&lenovoid.realm=seservice.PDGuide.lenovo.com&lenovoid.ctx=MTIzencode&lenovoid.lang=null&lenovoid.uinfo=null&lenovoid.cb=https://seservice.lenovo.com/login&lenovoid.vp=null&lenovoid.display=null&lenovoid_idp=null&lenovoid.source=seservice.PDGuide.lenovo.com&lenovoid.thirdname=null&lenovoid.idreinfo=null&lenovoid.autologinname=null&lenovoid.userType=null&lenovoid.sdk=null&lenovoid.oauthstate=null&lenovoid.options=null&lenovoid.hidesocial=null&lenovoid.hideregphone=1&lenovoid.hideloginreg=1&lenovoid.hidephonelogin=1&lenovoid.zoom=1&lenovoid.privacy=null&lenovoid.Terms=null&lenovoid.hidelanguage=1&lenovoid.hidegoogle=1&lenovoid.hidemicrosoft=1&lenovoid.hidefacebook=1&lenovoid.hidetwitch=1&lenovoid.hidediscord=1&lenovoid.hidesteam=1&lenovoid.theme=id&lenovoid.deviceinfo=null&lenovoid.deviceId=null&lenovoid.prompt=null" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 rounded-lg hover:bg-slate-100 transition-colors"><span class="text-xl mr-3">🔐</span><span class="text-slate-700 font-semibold">Lenovo Service Portal</span></a></li>
                     </ul>
                 </div>
             </div>
@@ -235,35 +276,60 @@
 
                 <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col">
                     <h3 class="text-2xl font-bold text-[#073B4C] mb-6 text-center">Applications You Need</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-center">
-                        <div class="p-2 bg-slate-100 rounded-lg">
-                            <h4 class="font-bold text-md text-slate-800 mb-3">BambooHR</h4>
-                            <div class="flex justify-center gap-2">
-                                <a href="https://apps.apple.com/us/app/bamboohr/id587244049" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full bg-black text-white py-2 px-2 rounded-lg hover:bg-gray-800 transition-colors text-sm">App Store</a>
-                                <a href="https://play.google.com/store/apps/details?id=com.mokinetworks.bamboohr&pcampaignid=web_share" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full bg-green-500 text-white py-2 px-2 rounded-lg hover:bg-green-600 transition-colors text-sm">Google Play</a>
+                    <div class="grid grid-cols-2 gap-6">
+                        
+                        <div class="app-card flex flex-col items-center text-center">
+                            <img src="BambooHR.png" alt="BambooHR Logo" class="app-logo mb-3">
+                            <h4 class="font-bold text-slate-800 mb-3 text-sm">BambooHR</h4>
+                            <div class="flex gap-3">
+                                <a href="https://apps.apple.com/us/app/bamboohr/id587244049" target="_blank" rel="noopener noreferrer">
+                                    <img src="App-Store-Logo.png" alt="App Store" class="store-logo">
+                                </a>
+                                <a href="https://play.google.com/store/apps/details?id=com.mokinetworks.bamboohr&pcampaignid=web_share" target="_blank" rel="noopener noreferrer">
+                                    <img src="Play-Store-logo.png" alt="Google Play" class="store-logo">
+                                </a>
                             </div>
                         </div>
-                        <div class="p-2 bg-slate-100 rounded-lg">
-                            <h4 class="font-bold text-md text-slate-800 mb-3">Discord</h4>
-                            <div class="flex justify-center gap-2">
-                                <a href="https://apps.apple.com/us/app/discord-talk-play-hang-out/id985746746" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full bg-black text-white py-2 px-2 rounded-lg hover:bg-gray-800 transition-colors text-sm">App Store</a>
-                                <a href="https://play.google.com/store/apps/details?id=com.discord&pcampaignid=web_share" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full bg-green-500 text-white py-2 px-2 rounded-lg hover:bg-green-600 transition-colors text-sm">Google Play</a>
+
+                        <div class="app-card flex flex-col items-center text-center">
+                            <img src="Discord.png" alt="Discord Logo" class="app-logo mb-3">
+                            <h4 class="font-bold text-slate-800 mb-3 text-sm">Discord</h4>
+                            <div class="flex gap-3">
+                                <a href="https://apps.apple.com/us/app/discord-talk-play-hang-out/id985746746" target="_blank" rel="noopener noreferrer">
+                                    <img src="App-Store-Logo.png" alt="App Store" class="store-logo">
+                                </a>
+                                <a href="https://play.google.com/store/apps/details?id=com.discord&pcampaignid=web_share" target="_blank" rel="noopener noreferrer">
+                                    <img src="Play-Store-logo.png" alt="Google Play" class="store-logo">
+                                </a>
                             </div>
                         </div>
-                        <div class="p-2 bg-slate-100 rounded-lg">
-                            <h4 class="font-bold text-md text-slate-800 mb-3">Deputy</h4>
-                            <div class="flex justify-center gap-2">
-                                <a href="https://apps.apple.com/us/app/deputy-shift-work-schedule/id477070330" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full bg-black text-white py-2 px-2 rounded-lg hover:bg-gray-800 transition-colors text-sm">App Store</a>
-                                <a href="https://play.google.com/store/apps/details?id=com.deputy.android&pcampaignid=web_share" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full bg-green-500 text-white py-2 px-2 rounded-lg hover:bg-green-600 transition-colors text-sm">Google Play</a>
+
+                        <div class="app-card flex flex-col items-center text-center">
+                            <img src="Deputy.png" alt="Deputy Logo" class="app-logo mb-3">
+                            <h4 class="font-bold text-slate-800 mb-3 text-sm">Deputy</h4>
+                            <div class="flex gap-3">
+                                <a href="https://apps.apple.com/us/app/deputy-shift-work-schedule/id477070330" target="_blank" rel="noopener noreferrer">
+                                    <img src="App-Store-Logo.png" alt="App Store" class="store-logo">
+                                </a>
+                                <a href="https://play.google.com/store/apps/details?id=com.deputy.android&pcampaignid=web_share" target="_blank" rel="noopener noreferrer">
+                                    <img src="Play-Store-logo.png" alt="Google Play" class="store-logo">
+                                </a>
                             </div>
                         </div>
-                        <div class="p-2 bg-slate-100 rounded-lg">
-                            <h4 class="font-bold text-md text-slate-800 mb-3">Kisi</h4>
-                            <div class="flex justify-center gap-2">
-                                <a href="https://apps.apple.com/us/app/kisi/id687291321" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full bg-black text-white py-2 px-2 rounded-lg hover:bg-gray-800 transition-colors text-sm">App Store</a>
-                                <a href="https://play.google.com/store/apps/details?id=de.kisi.android&pcampaignid=web_share" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full bg-green-500 text-white py-2 px-2 rounded-lg hover:bg-green-600 transition-colors text-sm">Google Play</a>
+
+                        <div class="app-card flex flex-col items-center text-center">
+                            <img src="Kisi.png" alt="Kisi Logo" class="app-logo mb-3">
+                            <h4 class="font-bold text-slate-800 mb-3 text-sm">Kisi</h4>
+                            <div class="flex gap-3">
+                                <a href="https://apps.apple.com/us/app/kisi/id687291321" target="_blank" rel="noopener noreferrer">
+                                    <img src="App-Store-Logo.png" alt="App Store" class="store-logo">
+                                </a>
+                                <a href="https://play.google.com/store/apps/details?id=de.kisi.android&pcampaignid=web_share" target="_blank" rel="noopener noreferrer">
+                                    <img src="Play-Store-logo.png" alt="Google Play" class="store-logo">
+                                </a>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -286,7 +352,6 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Sticky Navigation ---
             const nav = document.getElementById('main-nav');
             const header = document.querySelector('header');
             const navOffset = header.offsetHeight + header.offsetTop;
@@ -299,14 +364,12 @@
                 }
             });
 
-            // --- Animate on Scroll ---
             const animatedElements = document.querySelectorAll('.scroll-animate');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
                         
-                        // --- Animated Counters ---
                         const counters = entry.target.querySelectorAll('.counter');
                         counters.forEach(counter => {
                             if (counter.dataset.animated) return;
@@ -333,7 +396,6 @@
                             window.requestAnimationFrame(step);
                         });
 
-                        // --- Liquid Fill Animation (only scale up, no wave) ---
                         const liquidCircles = entry.target.querySelectorAll('.liquid-circle');
                         liquidCircles.forEach(circle => {
                             if (circle.dataset.animated) return;
@@ -342,7 +404,6 @@
                             const fillPercentage = circle.getAttribute('data-fill');
                             const liquidFill = circle.querySelector('.liquid-fill');
                             if(liquidFill) {
-                                // فقط پر شدن ساده با رنگ آبی
                                 liquidFill.style.height = `${fillPercentage}%`;
                             }
                         });
@@ -356,35 +417,5 @@
                 observer.observe(el);
             });
 
-            // ===== منطق مودال برای نمایش عکس‌ها =====
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
-            const closeModalBtn = document.getElementById('closeModal');
-            const galleryImages = document.querySelectorAll('.gallery-image');
-
-            galleryImages.forEach(img => {
-                img.addEventListener('click', () => {
-                    modal.classList.remove('hidden');
-                    modalImg.src = img.src;
-                });
-            });
-
-            function hideModal() {
-                modal.classList.add('hidden');
-            }
-
-            closeModalBtn.addEventListener('click', hideModal);
-
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    hideModal();
-                }
-            });
-            
-
-        });
-    </script>
-
-</body>
-</html>
-
