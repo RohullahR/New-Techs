@@ -129,6 +129,19 @@
         .app-card:hover {
             transform: translateY(-5px);
         }
+
+        /* Make links in the Essential Links card clearly look like links */
+        .essential-links a {
+            color: #1e40af; /* blue-800 */
+            text-decoration: underline;
+            font-weight: 600;
+            transition: color 0.15s ease, background-color 0.15s ease;
+        }
+        .essential-links a:hover {
+            color: #2563eb; /* blue-600 */
+            background-color: rgba(37,99,235,0.04);
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body class="bg-slate-100 text-slate-800">
@@ -161,7 +174,7 @@
             <div id="welcome-video" class="bg-white rounded-2xl shadow-lg p-6 md:p-8 scroll-animate">
                 <h2 class="text-3xl font-bold text-[#073B4C] mb-6 text-center">A Welcome Message for You</h2>
                 <div class="video-container max-w-4xl mx-auto rounded-lg overflow-hidden">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/J5nzAT9skv0?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/J5nzAT9skv0?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write;[...]
                 </div>
             </div>
 
@@ -170,11 +183,11 @@
                 <div class="timeline-container pl-4 max-w-4xl mx-auto">
                     <div class="timeline-item relative pl-8 pb-8">
                         <h3 class="text-xl font-bold text-[#118AB2] mb-2">Step 1: Orientation & Setup</h3>
-                        <p class="text-slate-600">We'll start your first day by introducing you to the team, showing you around the workspace — including Inventory and Quality Control — and getting your accounts set up.</p>
+                        <p class="text-slate-600">We'll start your first day by introducing you to the team, showing you around the workspace — including Inventory and Quality Control — and gettin[...]
                     </div>
                     <div class="timeline-item relative pl-8 pb-8">
                         <h3 class="text-xl font-bold text-[#118AB2] mb-2">Step 2: Process Training</h3>
-                        <p class="text-slate-600">You'll get to know our core RepairGenie (RG) system. Learn to log warranty vs. non-warranty devices, understand damage codes, and follow workflow steps.</p>
+                        <p class="text-slate-600">You'll get to know our core RepairGenie (RG) system. Learn to log warranty vs. non-warranty devices, understand damage codes, and follow workflow step[...]
                     </div>
                     <div class="timeline-item relative pl-8 pb-8">
                         <h3 class="text-xl font-bold text-[#118AB2] mb-2">Step 3: Hands-on Training Begins</h3>
@@ -186,7 +199,7 @@
                     </div>
                     <div class="timeline-item relative pl-8">
                         <h3 class="text-xl font-bold text-[#06D6A0] mb-2">Next Step: Independence & Growth</h3>
-                        <p class="text-slate-600">After completing assigned training and receiving approval from the technical lead, you'll begin handling more complex repairs and mentoring new trainees.</p>
+                        <p class="text-slate-600">After completing assigned training and receiving approval from the technical lead, you'll begin handling more complex repairs and mentoring new traine[...]
                     </div>
                 </div>
             </div>
@@ -233,21 +246,21 @@
                     <h3 class="text-2xl font-bold text-[#073B4C] mb-4 text-center">Performance Goals</h3>
                     <p class="text-sm text-slate-500 mb-6 text-center flex-grow">We'll focus on these key metrics for your success and growth.</p>
                      <div class="space-y-3 text-center mt-auto">
-                        <div class="bg-slate-200/60 rounded-lg p-3"><p class="text-sm font-bold text-[#073B4C]">Daily Repairs</p><p class="counter text-3xl font-black text-[#118AB2]" data-target="15">0</p></div>
-                        <div class="bg-slate-200/60 rounded-lg p-3"><p class="text-sm font-bold text-[#073B4C]">QC Success Rate</p><p class="counter text-3xl font-black text-[#06D6A0]" data-target="95">0</p></div>
-                        <div class="bg-slate-200/60 rounded-lg p-3"><p class="text-sm font-bold text-[#073B4C]">Turnaround Time</p><p class="counter text-3xl font-black text-[#EF476F]" data-target="35" data-suffix="min">0</p></div>
+                        <div class="bg-slate-200/60 rounded-lg p-3"><p class="text-sm font-bold text-[#073B4C]">Daily Repairs</p><p class="counter text-3xl font-black text-[#118AB2]" data-target="15">[...]
+                        <div class="bg-slate-200/60 rounded-lg p-3"><p class="text-sm font-bold text-[#073B4C]">QC Success Rate</p><p class="counter text-3xl font-black text-[#06D6A0]" data-target="95[...]
+                        <div class="bg-slate-200/60 rounded-lg p-3"><p class="text-sm font-bold text-[#073B4C]">Turnaround Time</p><p class="counter text-3xl font-black text-[#EF476F]" data-target="35[...]
                     </div>
                 </div>
 
-                <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col">
+                <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col essential-links">
                     <h3 class="text-2xl font-bold text-[#073B4C] mb-4 text-center">Essential Links</h3>
                     <p class="text-sm text-slate-500 mb-6 text-center flex-grow">Quick access to the tools you'll use every day.</p>
                     <ul class="space-y-3 mt-auto">
-                        <li><a href="https://workshop.repairgenie.net/login" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 rounded-lg hover:bg-slate-100 transition-colors"><span class="mr-3">🔗</span> RepairGenie</a></li>
-                        <li><a href="https://pcsupport.lenovo.com/us/en/" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 rounded-lg hover:bg-slate-100 transition-colors"><span class="mr-3">🔗</span> Lenovo Support</a></li>
-                        <li><a href="https://support.lenovo.com/us/en/parts-lookup" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 rounded-lg hover:bg-slate-100 transition-colors"><span class="mr-3">🔗</span> Parts Lookup</a></li>
-                        <li><a href="https://learning.lenovo.com/learn" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 rounded-lg hover:bg-slate-100 transition-colors"><span class="mr-3">🔗</span> Lenovo Learning</a></li>
-                        <li><a href="https://passport.lenovo.com/" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 rounded-lg hover:bg-slate-100 transition-colors"><span class="mr-3">🔗</span> Passport</a></li>
+                        <li><a href="https://workshop.repairgenie.net/login" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 rounded-lg hover:bg-slate-100 transition-colors"><sp[...]
+                        <li><a href="https://pcsupport.lenovo.com/us/en/" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 rounded-lg hover:bg-slate-100 transition-colors"><span [...]
+                        <li><a href="https://support.lenovo.com/us/en/parts-lookup" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 rounded-lg hover:bg-slate-100 transition-colo[...]
+                        <li><a href="https://learning.lenovo.com/learn" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 rounded-lg hover:bg-slate-100 transition-colors"><span cl[...]
+                        <li><a href="https://passport.lenovo.com/" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 rounded-lg hover:bg-slate-100 transition-colors"><span class="[...]
                     </ul>
                 </div>
             </div>
@@ -257,7 +270,7 @@
                 <ul class="space-y-4 text-slate-700 max-w-2xl mx-auto">
                     <li class="flex items-start"><span class="text-2xl mr-3 mt-1">🛠️</span><span>Pre-QC all devices before sending them to the QC station.</span></li>
                     <li class="flex items-start"><span class="text-2xl mr-3 mt-1">📦</span><span>Return remaining devices to their designated shelf.</span></li>
-                    <li class="flex items-start"><span class="text-2xl mr-3 mt-1">🏷️</span><span>Label returnable parts: include damage type, device model, and your credential number on the bag.</span></li>
+                    <li class="flex items-start"><span class="text-2xl mr-3 mt-1">🏷️</span><span>Label returnable parts: include damage type, device model, and your credential number on the bag.<[...]
                     <li class="flex items-start"><span class="text-2xl mr-3 mt-1">✅</span><span>Ensure all parts are scanned right after collecting them from inventory.</span></li>
                     <li class="flex items-start"><span class="text-2xl mr-3 mt-1">🧹</span><span>Tidy up your workstation before clocking out.</span></li>
                 </ul>
@@ -269,7 +282,7 @@
                 <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col">
                     <h3 class="text-2xl font-bold text-[#073B4C] mb-4">Technician Resources</h3>
                     <p class="text-sm text-slate-500 mb-6 flex-grow">Access all necessary files, guides, and software from our shared Google Drive.</p>
-                    <a href="https://drive.google.com/drive/folders/1UDZe3LzJsz6nq4ZT-nHQFzJnM6KFyDZz?usp=sharing" target="_blank" rel="noopener noreferrer" class="block w-full mt-auto bg-[#EF476F] text-white font-bold py-3 px-6 rounded-lg hover:opacity-95 transition-opacity">
+                    <a href="https://drive.google.com/drive/folders/1UDZe3LzJsz6nq4ZT-nHQFzJnM6KFyDZz?usp=sharing" target="_blank" rel="noopener noreferrer" class="block w-full mt-auto bg-[#EF476F] te[...]
                         Open Resource Folder
                     </a>
                 </div>
@@ -335,10 +348,10 @@
             </div>
 
             <div class="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
-                 <a href="https://discord.com/channels/813712361415639061/813724109610942475" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-[#5865F2] text-white font-bold py-3 px-6 rounded-lg hover:opacity-95 transition-colors">
+                 <a href="https://discord.com/channels/813712361415639061/813724109610942475" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-[#5865F2] text-white font-bold py-3 p[...]
                     Join our Discord
                 </a>
-                 <a href="https://www.celltech-usa.com/" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-[#073B4C] text-white font-bold py-3 px-6 rounded-lg hover:bg-[#0a5a75] transition-colors">
+                 <a href="https://www.celltech-usa.com/" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-[#073B4C] text-white font-bold py-3 px-6 rounded-lg hover:bg-[#0a5a75] tra[...]
                     Celltech Website
                 </a>
             </div>
