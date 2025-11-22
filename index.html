@@ -1,543 +1,460 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>New Technician Onboarding Workflow</title>
+    <title>Technician Onboarding - Celltech Inc</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb', // Royal Blue
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
+                        },
+                        secondary: {
+                            500: '#06b6d4', // Cyan
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
         }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: #118AB2;
-            border: 3px solid #f0f9ff;
-            top: 1.25rem;
-            left: -11px;
-            z-index: 10;
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(229, 231, 235, 0.5);
         }
-        .timeline-container {
-            position: relative;
-        }
-        .timeline-container::after {
-            content: '';
-            position: absolute;
-            width: 4px;
-            background-color: #118AB2;
-            top: 0;
-            bottom: 0;
-            left: 0;
-        }
-        .scroll-animate {
+        .reveal {
             opacity: 0;
             transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transition: all 0.8s ease-out;
         }
-        .scroll-animate.is-visible {
+        .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
-        #main-nav.nav-scrolled {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-            z-index: 1000;
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-        .liquid-circle {
-            position: relative;
-            overflow: hidden;
-            background-color: #e2e8f0;
-            border-radius: 9999px;
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
         }
-        .liquid-fill {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: #118AB2;
-            border-radius: 50%;
-            height: 0;
-            transition: height 1.2s cubic-bezier(.23,1.01,.32,1);
-            z-index: 1;
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
         }
-        .liquid-circle .content {
-            position: relative;
-            z-index: 10;
-        }
-        .video-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-            height: 0;
-        }
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .app-logo {
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
-            border-radius: 50%;
-            background: white;
-            padding: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
-            transition: all 0.3s ease;
-        }
-
-        .app-logo:hover {
-            transform: scale(1.08);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.18);
-        }
-
-        .store-logo {
-            width: 40px;
-            height: 40px;
-            object-fit: contain;
-            border-radius: 50%;
-            background: white;
-            padding: 6px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: all 0.25s ease;
-            cursor: pointer;
-        }
-
-        .store-logo:hover {
-            transform: scale(1.1);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        .app-card {
-            transition: all 0.3s ease;
-        }
-
-        .app-card:hover {
-            transform: translateY(-5px);
-        }
-
-        /* Make links in the Essential Links card clearly look like links */
-        .essential-links a {
-            color: #1e40af; /* blue-800 */
-            text-decoration: underline;
-            font-weight: 600;
-            transition: color 0.15s ease, background-color 0.15s ease;
-        }
-        .essential-links a:hover {
-            color: #2563eb; /* blue-600 */
-            background-color: rgba(37,99,235,0.04);
-            text-decoration: underline;
-        }
-
-        /* Small responsive tweaks */
-        @media (max-width: 640px) {
-            header { height: 320px; }
-            .text-5xl { font-size: 2rem; }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
         }
     </style>
 </head>
-<body class="bg-slate-100 text-slate-800">
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-primary-100 selection:text-primary-900">
 
-    <nav id="main-nav" class="py-3 transition-all duration-300">
-        <div class="container mx-auto flex justify-center items-center gap-4 md:gap-8">
-            <a href="#welcome-video" class="text-slate-600 hover:text-[#118AB2] font-semibold">Welcome Video</a>
-            <a href="#roadmap" class="text-slate-600 hover:text-[#118AB2] font-semibold">Roadmap</a>
-            <a href="#metrics" class="text-slate-600 hover:text-[#118AB2] font-semibold">Metrics</a>
-            <a href="#checklist" class="text-slate-600 hover:text-[#118AB2] font-semibold">Checklist</a>
-            <a href="#resources" class="text-slate-600 hover:text-[#118AB2] font-semibold">Resources</a>
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-nav rounded-2xl px-6 py-3 flex justify-between items-center shadow-lg shadow-slate-200/50">
+                <a href="#" class="flex items-center gap-2 font-bold text-xl tracking-tight text-slate-900">
+                    <div class="w-8 h-8 bg-gradient-to-br from-primary-600 to-secondary-500 rounded-lg flex items-center justify-center text-white">
+                        <i data-lucide="wrench" class="w-4 h-4"></i>
+                    </div>
+                    Celltech<span class="text-primary-600">Inc.</span>
+                </a>
+
+                <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                    <a href="#roadmap" class="hover:text-primary-600 transition-colors">Roadmap</a>
+                    <a href="#metrics" class="hover:text-primary-600 transition-colors">Metrics</a>
+                    <a href="#checklist" class="hover:text-primary-600 transition-colors">Checklist</a>
+                    <a href="#resources" class="hover:text-primary-600 transition-colors">Resources</a>
+                </div>
+
+                <a href="https://workshop.repairgenie.net/login" target="_blank" class="hidden md:flex items-center gap-2 bg-slate-900 text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-primary-600 transition-all shadow-lg shadow-slate-900/20 hover:shadow-primary-600/30">
+                    <span>Workshop Login</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+
+                <button class="md:hidden text-slate-600" id="mobile-menu-btn">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full px-4 mt-2">
+            <div class="glass-panel rounded-2xl p-4 flex flex-col gap-4 shadow-xl">
+                <a href="#roadmap" class="p-2 hover:bg-slate-100 rounded-lg">Roadmap</a>
+                <a href="#metrics" class="p-2 hover:bg-slate-100 rounded-lg">Metrics</a>
+                <a href="#checklist" class="p-2 hover:bg-slate-100 rounded-lg">Checklist</a>
+                <a href="#resources" class="p-2 hover:bg-slate-100 rounded-lg">Resources</a>
+            </div>
         </div>
     </nav>
 
-    <div class="container mx-auto p-4 md:p-8">
+    <!-- Hero Section -->
+    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="absolute inset-0 z-0 pointer-events-none">
+            <div class="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-l from-blue-50 to-transparent"></div>
+            <div class="absolute bottom-0 left-1/4 w-96 h-96 bg-secondary-500/10 rounded-full blur-3xl"></div>
+        </div>
 
-        <header class="relative text-center mb-12 rounded-2xl shadow-lg overflow-hidden scroll-animate h-[450px]">
-            <img src="workshop2.jpg" alt="Technician workshop with a laptop being repaired" class="absolute top-0 left-0 w-full h-full object-cover" />
-            <div class="absolute top-0 left-0 w-full h-full bg-black/60"></div>
-
-            <div class="relative z-10 flex flex-col items-center justify-center h-full p-6">
-                <img src="celltech-logo-reversedwh-notag-1-192x77.png" alt="Celltech Inc. Logo" class="h-16 w-auto mb-6" />
-                <h1 class="text-5xl md:text-7xl font-black text-white mb-4">Welcome to Celltech Inc!</h1>
-                <p class="text-2xl md:text-3xl text-slate-200">Your journey to becoming an expert technician starts here</p>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="flex-1 text-center lg:text-left reveal active">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-primary-700 text-xs font-bold uppercase tracking-wide mb-6">
+                        <span class="w-2 h-2 rounded-full bg-primary-500 animate-pulse"></span>
+                        New Technician Onboarding
+                    </div>
+                    <h1 class="text-4xl lg:text-6xl font-extrabold text-slate-900 leading-tight mb-6">
+                        Welcome to the <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-500">Celltech Team</span>
+                    </h1>
+                    <p class="text-lg text-slate-600 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Your journey to becoming an expert technician starts here. We've prepared a comprehensive roadmap to help you settle in.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#welcome-video" class="flex items-center justify-center gap-2 bg-primary-600 text-white px-8 py-4 rounded-xl font-semibold shadow-xl shadow-primary-600/30 hover:bg-primary-700 hover:scale-105 transition-all">
+                            <i data-lucide="play-circle" class="w-5 h-5"></i>
+                            Start Orientation
+                        </a>
+                        <!-- LINK: Resource Folder (Drive) -->
+                        <a href="https://drive.google.com/drive/folders/1UDZe3LzJsz6nq4ZT-nHQFzJnM6KFyDZz?usp=sharing" target="_blank" class="flex items-center justify-center gap-2 bg-white text-slate-700 border border-slate-200 px-8 py-4 rounded-xl font-semibold hover:bg-slate-50 hover:border-slate-300 transition-all">
+                            <i data-lucide="folder-open" class="w-5 h-5"></i>
+                            Access Drive
+                        </a>
+                    </div>
+                </div>
+                <div class="flex-1 w-full max-w-lg lg:max-w-none reveal active delay-200">
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-primary-600 to-secondary-500 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                        <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-100 aspect-video bg-slate-200">
+                            <!-- Fallback Image -->
+                            <img src="workshop2.jpg" onerror="this.src='https://images.unsplash.com/photo-1581092921461-eab62e97a783?q=80&w=2070&auto=format&fit=crop'" alt="Workshop" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent flex items-end p-8">
+                                <div class="text-white">
+                                    <p class="font-bold text-lg">Modern Repair Facility</p>
+                                    <p class="text-slate-200 text-sm">Where quality meets efficiency</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </header>
+        </div>
+    </header>
 
-        <main class="space-y-12">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 pb-24">
 
-            <section id="welcome-video" class="bg-white rounded-2xl shadow-lg p-6 md:p-8 scroll-animate">
-                <h2 class="text-3xl font-bold text-[#073B4C] mb-6 text-center">A Welcome Message for You</h2>
-                <div class="video-container max-w-4xl mx-auto rounded-lg overflow-hidden">
-                    <iframe
-                        width="560"
-                        height="315"
-                        src="https://www.youtube.com/embed/J5nzAT9skv0?rel=0"
-                        title="Welcome video for new technicians"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen>
-                    </iframe>
-                </div>
-            </section>
-
-            <section id="roadmap" class="bg-white rounded-2xl shadow-lg p-6 md:p-8 scroll-animate">
-                <h2 class="text-3xl font-bold text-[#073B4C] mb-8 text-center">Onboarding Roadmap</h2>
-                <div class="timeline-container pl-4 max-w-4xl mx-auto">
-                    <div class="timeline-item relative pl-8 pb-8">
-                        <h3 class="text-xl font-bold text-[#118AB2] mb-2">Step 1: Orientation & Setup</h3>
-                        <p class="text-slate-600">We'll start your first day by introducing you to the team, showing you around the workspace—including areas like Inventory and Quality Control—and getting your systems and access set up. We'll also make sure you receive all the tools and equipment you need to begin your work confidently.</p>
+        <!-- LINK: Welcome Video -->
+        <section id="welcome-video" class="reveal">
+            <div class="glass-panel rounded-3xl p-1 md:p-2 shadow-xl shadow-slate-200/50">
+                <div class="bg-white rounded-2xl overflow-hidden">
+                    <div class="p-8 text-center bg-slate-50 border-b border-slate-100">
+                        <h2 class="text-2xl font-bold text-slate-800">A Message from Leadership</h2>
+                        <p class="text-slate-500 mt-2">Introduction to company values and expectations</p>
                     </div>
-
-                    <div class="timeline-item relative pl-8 pb-8">
-                        <h3 class="text-xl font-bold text-[#118AB2] mb-2">Step 2: Process Training</h3>
-                        <p class="text-slate-600">You'll get to know our core RepairGenie (RG) system. You'll learn how to log warranty vs. non-warranty devices and understand damage codes like ADW, CLW, CID,...</p>
-                    </div>
-
-                    <div class="timeline-item relative pl-8 pb-8">
-                        <h3 class="text-xl font-bold text-[#118AB2] mb-2">Step 3: Hands-on Training Begins</h3>
-                        <p class="text-slate-600">Time to get practical! You'll begin with basic repairs—such as replacing LCD screens, keyboards, and LCD base covers—under the supervision of experienced staff. As you settle in, you'll build your technical skills through guided, hands-on practice and close collaboration with senior technicians, observing their work and gradually taking on more tasks as your confidence grows.</p>
-                    </div>
-
-                    <div class="timeline-item relative pl-8 pb-8">
-                        <h3 class="text-xl font-bold text-[#118AB2] mb-2">Step 4: Supervised Practice</h3>
-                        <p class="text-slate-600">At this stage, you'll begin working on devices with simple issues. The key focus will be following the documented workflow, keeping precise records, and reporting accurately in the RG system.</p>
-                    </div>
-
-                    <div class="timeline-item relative pl-8">
-                        <h3 class="text-xl font-bold text-[#06D6A0] mb-2">Next Step: Independence & Growth</h3>
-                        <p class="text-slate-600">Once you've completed your assigned course and received approval from the technical lead, you'll begin working independently on more complex tasks. If you're unsure which courses to take, <a href="https://drive.google.com/file/d/1sXPxjE13A6aWYFVGbzZ5gscosj-EZWJB/view?usp=sharing" target="_blank" class="text-blue-600 hover:underline font-semibold">click here to see the list.</a> Your performance will be regularly reviewed to ensure you're meeting both quality and quantity goals.</p>
+                    <div class="relative w-full aspect-video bg-slate-900">
+                        <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/J5nzAT9skv0?rel=0" title="Welcome Video" allowfullscreen frameborder="0"></iframe>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section id="ADP-Coverage" class="bg-white rounded-2xl shadow-lg p-6 md:p-8 scroll-animate">
-                <h2 class="text-3xl font-bold text-[#073B4C] mb-8 text-center">Accidental Damage Protection (ADP)</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="overflow-hidden rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer">
-                        <img src="page1.png" alt="What is ADP? - explanation page" class="w-full h-auto object-cover gallery-image" />
-                    </div>
-                    <div class="overflow-hidden rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer">
-                        <img src="page2.png" alt="ADP examples and scenarios" class="w-full h-auto object-cover gallery-image" />
-                    </div>
-                    <div class="overflow-hidden rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer">
-                        <img src="page3.png" alt="Submitting a claim - ADP steps" class="w-full h-auto object-cover gallery-image" />
+        <!-- Roadmap Section -->
+        <section id="roadmap" class="reveal">
+            <div class="text-center mb-16">
+                <span class="text-primary-600 font-semibold tracking-wider uppercase text-sm">Growth Path</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2">Your Onboarding Roadmap</h2>
+            </div>
+
+            <!-- Roadmap Image Card -->
+            <div class="glass-panel p-4 md:p-8 rounded-3xl shadow-xl shadow-slate-200/50 mb-12">
+                <div class="relative group overflow-hidden rounded-2xl border border-slate-100 bg-slate-100">
+                    <!-- IMAGE: Roadmap.JPG (UPDATED) -->
+                    <img 
+                        src="roadmap.JPG" 
+                        onerror="this.src='https://placehold.co/1200x600/e2e8f0/1e293b?text=Roadmap+Image+Not+Found+(roadmap.JPG)';"
+                        alt="Technician Onboarding Roadmap" 
+                        class="w-full h-auto object-cover"
+                    >
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent flex items-end justify-center p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <!-- LINK: Download Roadmap (UPDATED) -->
+                        <a href="roadmap.JPG" download class="inline-flex items-center gap-2 bg-white text-slate-900 px-6 py-3 rounded-xl font-bold hover:bg-slate-100 transition-colors shadow-lg">
+                            <i data-lucide="download" class="w-5 h-5"></i>
+                            Download Roadmap Image
+                        </a>
                     </div>
                 </div>
-            </section>
+            </div>
 
-            <section id="metrics" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 scroll-animate">
-                <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col">
-                    <h3 class="text-2xl font-bold text-[#073B4C] mb-4 text-center">Training Focus</h3>
-                    <p class="text-sm text-slate-500 mb-6 text-center flex-grow">Your time is split across several areas for a well-rounded experience.</p>
-                    <div class="flex justify-around items-center gap-2 text-center text-white">
-                        <div class="w-32 h-32 rounded-full flex flex-col justify-center items-center p-2 liquid-circle" data-fill="30">
-                            <div class="liquid-fill"></div>
-                            <div class="content">
-                                <span class="counter text-3xl font-bold" data-target="30" data-suffix="%">0</span>
-                                <p class="text-xs mt-1 text-slate-800">Orientation</p>
+            <!-- Text Timeline -->
+            <div class="relative max-w-4xl mx-auto pl-8 md:pl-12">
+                <div class="absolute left-6 top-0 bottom-0 w-0.5 bg-slate-200"></div>
+                <div class="space-y-12">
+                    <div class="relative">
+                        <div class="absolute left-[-29px] top-1 w-12 h-12 bg-white border-4 border-primary-500 rounded-full flex items-center justify-center shadow-lg z-10 font-bold text-primary-600">1</div>
+                        <div class="glass-panel p-6 rounded-2xl ml-6">
+                            <h3 class="text-xl font-bold text-slate-900">Orientation & Setup</h3>
+                            <p class="text-slate-600 mt-2">Meet the team, tour inventory/QC, and get your workstation ready.</p>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute left-[-29px] top-1 w-12 h-12 bg-white border-4 border-primary-500 rounded-full flex items-center justify-center shadow-lg z-10 font-bold text-primary-600">2</div>
+                        <div class="glass-panel p-6 rounded-2xl ml-6">
+                            <h3 class="text-xl font-bold text-slate-900">Process Training</h3>
+                            <p class="text-slate-600 mt-2">Learn RepairGenie (RG) system, warranty logging, and damage codes.</p>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute left-[-29px] top-1 w-12 h-12 bg-white border-4 border-primary-500 rounded-full flex items-center justify-center shadow-lg z-10 font-bold text-primary-600">3</div>
+                        <div class="glass-panel p-6 rounded-2xl ml-6">
+                            <h3 class="text-xl font-bold text-slate-900">Hands-on Training</h3>
+                            <p class="text-slate-600 mt-2">Start basic repairs under supervision and build confidence.</p>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute left-[-29px] top-1 w-12 h-12 bg-white border-4 border-secondary-500 rounded-full flex items-center justify-center shadow-lg z-10 text-secondary-600"><i data-lucide="star" class="w-5 h-5 fill-current"></i></div>
+                        <div class="glass-panel p-6 rounded-2xl ml-6 border-l-4 border-l-secondary-500">
+                            <h3 class="text-xl font-bold text-slate-900">Independence</h3>
+                            <p class="text-slate-600 mt-2 mb-3">Work independently on complex tasks.</p>
+                            <!-- LINK: Course List Drive Link -->
+                            <a href="https://drive.google.com/file/d/1sXPxjE13A6aWYFVGbzZ5gscosj-EZWJB/view?usp=sharing" target="_blank" class="text-primary-600 font-semibold hover:underline flex items-center gap-1">View Course List <i data-lucide="external-link" class="w-4 h-4"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Metrics Section -->
+        <section id="metrics" class="reveal">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Gauges -->
+                <div class="bg-white rounded-3xl p-8 shadow-xl shadow-slate-200/50">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-6">Training Breakdown</h3>
+                    <div class="flex justify-center items-end gap-4 md:gap-8">
+                        <div class="text-center">
+                            <div class="w-20 h-20 rounded-full border-4 border-slate-100 flex items-center justify-center mb-2 mx-auto">
+                                <span class="font-bold text-slate-600 text-lg">30%</span>
                             </div>
+                            <span class="text-xs font-semibold text-slate-500 uppercase">Orientation</span>
                         </div>
-
-                        <div class="w-36 h-36 rounded-full flex flex-col justify-center items-center p-2 liquid-circle" data-fill="40">
-                            <div class="liquid-fill"></div>
-                            <div class="content">
-                                <span class="counter text-4xl font-bold" data-target="40" data-suffix="%">0</span>
-                                <p class="text-sm mt-1 text-slate-800">Hands-on</p>
+                        <div class="text-center transform scale-110">
+                            <div class="w-24 h-24 rounded-full border-4 border-primary-100 bg-primary-50 flex items-center justify-center mb-2 mx-auto relative overflow-hidden">
+                                <div class="absolute bottom-0 left-0 w-full h-[40%] bg-primary-500 opacity-20"></div>
+                                <span class="font-black text-primary-700 text-2xl relative z-10">40%</span>
                             </div>
+                            <span class="text-sm font-bold text-primary-600 uppercase">Hands-on</span>
                         </div>
-
-                        <div class="w-32 h-32 rounded-full flex flex-col justify-center items-center p-2 liquid-circle" data-fill="30">
-                            <div class="liquid-fill"></div>
-                            <div class="content">
-                                <span class="counter text-3xl font-bold" data-target="30" data-suffix="%">0</span>
-                                <p class="text-xs mt-1 text-slate-800">Practice</p>
+                        <div class="text-center">
+                            <div class="w-20 h-20 rounded-full border-4 border-slate-100 flex items-center justify-center mb-2 mx-auto">
+                                <span class="font-bold text-slate-600 text-lg">30%</span>
                             </div>
+                            <span class="text-xs font-semibold text-slate-500 uppercase">Practice</span>
                         </div>
                     </div>
                 </div>
-
-                <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col">
-                    <h3 class="text-2xl font-bold text-[#073B4C] mb-4 text-center">Performance Goals</h3>
-                    <p class="text-sm text-slate-500 mb-6 text-center flex-grow">We'll focus on these key metrics for your success and growth.</p>
-                    <div class="space-y-3 text-center mt-auto">
-                        <div class="bg-slate-200/60 rounded-lg p-3">
-                            <p class="text-sm font-bold text-[#073B4C]">Daily Repairs</p>
-                            <p class="counter text-3xl font-black text-[#118AB2]" data-target="15">0</p>
+                <!-- Stats -->
+                <div class="space-y-4">
+                    <div class="bg-white p-6 rounded-2xl shadow-lg flex justify-between items-center border-l-4 border-primary-500">
+                        <div>
+                            <p class="text-xs font-bold text-slate-400 uppercase">Daily Target</p>
+                            <h4 class="text-xl font-bold text-slate-900">Daily Repairs</h4>
                         </div>
-                        <div class="bg-slate-200/60 rounded-lg p-3">
-                            <p class="text-sm font-bold text-[#073B4C]">QC Success Rate</p>
-                            <p class="counter text-3xl font-black text-[#06D6A0]" data-target="95" data-suffix="%">0</p>
+                        <span class="text-3xl font-black text-primary-600">15</span>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-lg flex justify-between items-center border-l-4 border-green-500">
+                        <div>
+                            <p class="text-xs font-bold text-slate-400 uppercase">Quality</p>
+                            <h4 class="text-xl font-bold text-slate-900">QC Pass Rate</h4>
                         </div>
-                        <div class="bg-slate-200/60 rounded-lg p-3">
-                            <p class="text-sm font-bold text-[#073B4C]">Turnaround Time</p>
-                            <p class="counter text-3xl font-black text-[#EF476F]" data-target="35" data-suffix="min">0</p>
-                            <p class="text-xs text-slate-500 mt-1">Average minutes per repair</p>
+                        <span class="text-3xl font-black text-green-500">95%</span>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-lg flex justify-between items-center border-l-4 border-pink-500">
+                        <div>
+                            <p class="text-xs font-bold text-slate-400 uppercase">Speed</p>
+                            <h4 class="text-xl font-bold text-slate-900">Turnaround</h4>
                         </div>
+                        <span class="text-3xl font-black text-pink-500">35m</span>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col essential-links">
-                    <h3 class="text-2xl font-bold text-[#073B4C] mb-4 text-center">Essential Links</h3>
-                    <p class="text-sm text-slate-500 mb-6 text-center flex-grow">Quick access to the tools you'll use every day.</p>
-                    <ul class="space-y-3 mt-auto">
-                        <li>
-                            <a href="https://workshop.repairgenie.net/login" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 rounded-lg hover:bg-slate-100 transition-colors">
-                                <span class="mr-3">🔧</span>
-                                <span>RepairGenie Workshop</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://pcsupport.lenovo.com/us/en/" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 rounded-lg hover:bg-slate-100 transition-colors">
-                                <span class="mr-3">💻</span>
-                                <span>Lenovo PC Support</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://support.lenovo.com/us/en/parts-lookup" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 rounded-lg hover:bg-slate-100 transition-colors">
-                                <span class="mr-3">🔎</span>
-                                <span>Lenovo Parts Lookup</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://learning.lenovo.com/learn" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 rounded-lg hover:bg-slate-100 transition-colors">
-                                <span class="mr-3">🎓</span>
-                                <span>Lenovo Learning Portal</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://support.lenovo.com/us/en/solutions/ht505031-parts-removal-and-replacement-videos-pcs-and-smart-devices/" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 rounded-lg hover:bg-slate-100 transition-colors">
-                                <span class="mr-3">🔐</span>
-                                <span>Parts Removal and Replacement Videos</span>
-                            </a>
-                        </li>
-                    </ul>
+        <!-- ADP Gallery -->
+        <section class="reveal">
+            <div class="glass-panel p-8 rounded-3xl">
+                <div class="flex items-center gap-3 mb-6">
+                    <i data-lucide="shield-alert" class="w-6 h-6 text-red-500"></i>
+                    <h2 class="text-2xl font-bold text-slate-900">ADP Guides</h2>
                 </div>
-            </section>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <img src="page1.png" onerror="this.src='https://placehold.co/300x400?text=Page+1'" class="rounded-xl shadow-md hover:scale-105 transition-transform cursor-pointer gallery-item" alt="ADP 1">
+                    <img src="page2.png" onerror="this.src='https://placehold.co/300x400?text=Page+2'" class="rounded-xl shadow-md hover:scale-105 transition-transform cursor-pointer gallery-item" alt="ADP 2">
+                    <img src="page3.png" onerror="this.src='https://placehold.co/300x400?text=Page+3'" class="rounded-xl shadow-md hover:scale-105 transition-transform cursor-pointer gallery-item" alt="ADP 3">
+                </div>
+            </div>
+        </section>
 
-            <section id="checklist" class="bg-white rounded-2xl shadow-lg p-6 md:p-8 scroll-animate">
-                <h3 class="text-2xl font-bold text-[#073B4C] mb-4 text-center">Daily Checklist</h3>
-                <ul class="space-y-4 text-slate-700 max-w-2xl mx-auto">
-                    <li class="flex items-start"><span class="text-2xl mr-3 mt-1">🛠️</span><span>Pre-QC all devices before sending them to the QC station.</span></li>
-                    <li class="flex items-start"><span class="text-2xl mr-3 mt-1">📦</span><span>Return remaining devices to their designated shelf and update inventory records.</span></li>
-                    <li class="flex items-start"><span class="text-2xl mr-3 mt-1">🏷️</span><span>Label returnable parts with damage type, device model, and your technician ID.</span></li>
-                    <li class="flex items-start"><span class="text-2xl mr-3 mt-1">✅</span><span>Ensure all parts are scanned into the system immediately after collecting them from inventory.</span></li>
-                    <li class="flex items-start"><span class="text-2xl mr-3 mt-1">🧹</span><span>Tidy up your workstation and submit end-of-day notes before clocking out.</span></li>
+        <!-- Checklist & Quick Links -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 reveal" id="checklist">
+            <div class="bg-white rounded-3xl p-8 shadow-xl">
+                <h3 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+                    <i data-lucide="check-square" class="text-green-500"></i> Daily Protocol
+                </h3>
+                <ul class="space-y-3">
+                    <li class="flex gap-3 items-start"><i data-lucide="circle" class="w-5 h-5 text-slate-300 shrink-0 mt-0.5"></i> <span>Pre-QC all devices before QC station.</span></li>
+                    <li class="flex gap-3 items-start"><i data-lucide="circle" class="w-5 h-5 text-slate-300 shrink-0 mt-0.5"></i> <span>Return remaining devices to inventory.</span></li>
+                    <li class="flex gap-3 items-start"><i data-lucide="circle" class="w-5 h-5 text-slate-300 shrink-0 mt-0.5"></i> <span>Label returnable parts correctly.</span></li>
+                    <li class="flex gap-3 items-start"><i data-lucide="circle" class="w-5 h-5 text-slate-300 shrink-0 mt-0.5"></i> <span>Scan parts immediately upon collection.</span></li>
+                    <li class="flex gap-3 items-start"><i data-lucide="circle" class="w-5 h-5 text-slate-300 shrink-0 mt-0.5"></i> <span>Clean workstation & submit EOD notes.</span></li>
                 </ul>
-            </section>
+            </div>
 
-        </main>
-
-        <footer id="resources" class="mt-12 text-center scroll-animate">
-            <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col">
-                    <h3 class="text-2xl font-bold text-[#073B4C] mb-4">Technician Resources</h3>
-                    <p class="text-sm text-slate-500 mb-6 flex-grow">Access all necessary files, guides, and software from our shared Google Drive.</p>
-                    <a href="https://drive.google.com/drive/folders/1UDZe3LzJsz6nq4ZT-nHQFzJnM6KFyDZz?usp=sharing" target="_blank" rel="noopener noreferrer" class="block w-full mt-auto bg-[#EF476F] text-white font-bold py-3 px-6 rounded-lg hover:bg-[#e63a67] transition-colors">
-                        Open Resource Folder
+            <div class="bg-slate-900 rounded-3xl p-8 shadow-xl text-white">
+                <h3 class="text-2xl font-bold mb-6">Quick Access</h3>
+                <!-- LINKS: All Essential Links Preserved -->
+                <div class="grid gap-3">
+                    <a href="https://workshop.repairgenie.net/login" target="_blank" class="flex items-center justify-between p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-colors">
+                        <span class="font-medium flex items-center gap-3"><i data-lucide="tool" class="text-primary-400"></i> RepairGenie</span>
+                        <i data-lucide="external-link" class="w-4 h-4 text-slate-400"></i>
+                    </a>
+                    <a href="https://pcsupport.lenovo.com/us/en/" target="_blank" class="flex items-center justify-between p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-colors">
+                        <span class="font-medium flex items-center gap-3"><i data-lucide="monitor" class="text-primary-400"></i> Lenovo Support</span>
+                        <i data-lucide="external-link" class="w-4 h-4 text-slate-400"></i>
+                    </a>
+                    <a href="https://support.lenovo.com/us/en/parts-lookup" target="_blank" class="flex items-center justify-between p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-colors">
+                        <span class="font-medium flex items-center gap-3"><i data-lucide="search" class="text-primary-400"></i> Parts Lookup</span>
+                        <i data-lucide="external-link" class="w-4 h-4 text-slate-400"></i>
+                    </a>
+                    <a href="https://learning.lenovo.com/learn" target="_blank" class="flex items-center justify-between p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-colors">
+                        <span class="font-medium flex items-center gap-3"><i data-lucide="graduation-cap" class="text-primary-400"></i> Learning Portal</span>
+                        <i data-lucide="external-link" class="w-4 h-4 text-slate-400"></i>
+                    </a>
+                    <!-- Added Missing Link: Parts Videos -->
+                    <a href="https://support.lenovo.com/us/en/solutions/ht505031-parts-removal-and-replacement-videos-pcs-and-smart-devices/" target="_blank" class="flex items-center justify-between p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-colors">
+                        <span class="font-medium flex items-center gap-3"><i data-lucide="video" class="text-primary-400"></i> Repair Videos</span>
+                        <i data-lucide="external-link" class="w-4 h-4 text-slate-400"></i>
                     </a>
                 </div>
-
-                <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col">
-                    <h3 class="text-2xl font-bold text-[#073B4C] mb-6 text-center">Applications You Need</h3>
-                    <div class="grid grid-cols-2 gap-6">
-                        <div class="app-card flex flex-col items-center text-center">
-                            <img src="BambooHR.png" alt="BambooHR Logo" class="app-logo mb-3" />
-                            <h4 class="font-bold text-slate-800 mb-3 text-sm">BambooHR</h4>
-                            <div class="flex gap-3">
-                                <a href="https://apps.apple.com/us/app/bamboohr/id587244049" target="_blank" rel="noopener noreferrer">
-                                    <img src="App-Store-Logo.png" alt="App Store" class="store-logo" />
-                                </a>
-                                <a href="https://play.google.com/store/apps/details?id=com.mokinetworks.bamboohr" target="_blank" rel="noopener noreferrer">
-                                    <img src="Play-Store-logo.png" alt="Google Play" class="store-logo" />
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="app-card flex flex-col items-center text-center">
-                            <img src="Discord.png" alt="Discord Logo" class="app-logo mb-3" />
-                            <h4 class="font-bold text-slate-800 mb-3 text-sm">Discord</h4>
-                            <div class="flex gap-3">
-                                <a href="https://apps.apple.com/us/app/discord-talk-play-hang-out/id985746746" target="_blank" rel="noopener noreferrer">
-                                    <img src="App-Store-Logo.png" alt="App Store" class="store-logo" />
-                                </a>
-                                <a href="https://play.google.com/store/apps/details?id=com.discord" target="_blank" rel="noopener noreferrer">
-                                    <img src="Play-Store-logo.png" alt="Google Play" class="store-logo" />
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="app-card flex flex-col items-center text-center">
-                            <img src="Deputy.png" alt="Deputy Logo" class="app-logo mb-3" />
-                            <h4 class="font-bold text-slate-800 mb-3 text-sm">Deputy</h4>
-                            <div class="flex gap-3">
-                                <a href="https://apps.apple.com/us/app/deputy-shift-work-schedule/id477070330" target="_blank" rel="noopener noreferrer">
-                                    <img src="App-Store-Logo.png" alt="App Store" class="store-logo" />
-                                </a>
-                                <a href="https://play.google.com/store/apps/details?id=com.deputy.android" target="_blank" rel="noopener noreferrer">
-                                    <img src="Play-Store-logo.png" alt="Google Play" class="store-logo" />
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="app-card flex flex-col items-center text-center">
-                            <img src="Kisi.png" alt="Kisi Logo" class="app-logo mb-3" />
-                            <h4 class="font-bold text-slate-800 mb-3 text-sm">Kisi</h4>
-                            <div class="flex gap-3">
-                                <a href="https://apps.apple.com/us/app/kisi/id687291321" target="_blank" rel="noopener noreferrer">
-                                    <img src="App-Store-Logo.png" alt="App Store" class="store-logo" />
-                                </a>
-                                <a href="https://play.google.com/store/apps/details?id=de.kisi.android" target="_blank" rel="noopener noreferrer">
-                                    <img src="Play-Store-logo.png" alt="Google Play" class="store-logo" />
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
             </div>
+        </section>
 
-            <div class="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
-                <a href="https://discord.com/channels/813712361415639061/813724109610942475" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-[#5865F2] text-white font-bold py-3 px-6 rounded-lg hover:bg-[#4057d6] transition-colors">
-                    Join our Discord
+        <!-- Footer Apps & Links -->
+        <footer id="resources" class="border-t border-slate-200 pt-12 pb-8">
+            <div class="flex justify-center flex-wrap gap-8 mb-8 opacity-90">
+                <a href="https://www.bamboohr.com/login" target="_blank" class="text-center group cursor-pointer">
+                    <div class="w-16 h-16 bg-white rounded-2xl shadow flex items-center justify-center mx-auto mb-2 group-hover:-translate-y-2 transition-transform">
+                        <img src="BambooHR.png" onerror="this.src='https://placehold.co/100?text=HR'" class="w-10 h-10 object-contain">
+                    </div>
+                    <span class="text-xs font-bold text-slate-500 group-hover:text-primary-600">BambooHR</span>
                 </a>
-                <a href="https://www.celltech-usa.com/" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-[#073B4C] text-white font-bold py-3 px-6 rounded-lg hover:bg-[#0a5a75] transition-colors">
-                    Celltech Website
+                
+                <!-- LINK: Discord Channel -->
+                <a href="https://discord.com/channels/813712361415639061/813724109610942475" target="_blank" class="text-center group cursor-pointer">
+                    <div class="w-16 h-16 bg-white rounded-2xl shadow flex items-center justify-center mx-auto mb-2 group-hover:-translate-y-2 transition-transform">
+                        <img src="Discord.png" onerror="this.src='https://placehold.co/100?text=Chat'" class="w-10 h-10 object-contain">
+                    </div>
+                    <span class="text-xs font-bold text-slate-500 group-hover:text-indigo-600">Discord</span>
                 </a>
+
+                <a href="https://www.deputy.com/login" target="_blank" class="text-center group cursor-pointer">
+                    <div class="w-16 h-16 bg-white rounded-2xl shadow flex items-center justify-center mx-auto mb-2 group-hover:-translate-y-2 transition-transform">
+                        <img src="Deputy.png" onerror="this.src='https://placehold.co/100?text=Work'" class="w-10 h-10 object-contain">
+                    </div>
+                    <span class="text-xs font-bold text-slate-500 group-hover:text-primary-600">Deputy</span>
+                </a>
+
+                <a href="https://web.kisi.io/login" target="_blank" class="text-center group cursor-pointer">
+                    <div class="w-16 h-16 bg-white rounded-2xl shadow flex items-center justify-center mx-auto mb-2 group-hover:-translate-y-2 transition-transform">
+                        <img src="Kisi.png" onerror="this.src='https://placehold.co/100?text=Key'" class="w-10 h-10 object-contain">
+                    </div>
+                    <span class="text-xs font-bold text-slate-500 group-hover:text-primary-600">Kisi</span>
+                </a>
+            </div>
+            
+            <div class="flex justify-center gap-4 text-slate-400 text-sm">
+                <!-- LINK: Celltech Website -->
+                <a href="https://www.celltech-usa.com/" target="_blank" class="hover:text-primary-600 transition-colors">Celltech Website</a>
+                <span>•</span>
+                <p>&copy; 2024 Celltech Inc.</p>
             </div>
         </footer>
 
-    </div>
+    </main>
 
-    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center hidden z-50 p-4 transition-opacity duration-300">
-      <span id="closeModal" class="absolute top-5 right-8 text-white text-5xl font-bold hover:text-gray-400 cursor-pointer">&times;</span>
-      <img class="max-w-full max-h-full rounded-lg" id="modalImage" alt="نمای بزرگ عکس" />
+    <!-- Modal Logic -->
+    <div id="modal" class="fixed inset-0 z-[60] hidden bg-slate-900/90 backdrop-blur-sm flex items-center justify-center p-4">
+        <img id="modal-img" class="max-w-full max-h-[90vh] rounded-lg shadow-2xl" src="">
+        <button id="close-modal" class="absolute top-4 right-4 text-white hover:text-slate-300">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const nav = document.getElementById('main-nav');
-            const header = document.querySelector('header');
-            const navOffset = header ? (header.offsetHeight + header.offsetTop) : 100;
+        lucide.createIcons();
 
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > navOffset) {
-                    nav.classList.add('nav-scrolled');
-                } else {
-                    nav.classList.remove('nav-scrolled');
+        // Navbar & Mobile Menu
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+        // Scroll Animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
                 }
             });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-            const animatedElements = document.querySelectorAll('.scroll-animate');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-
-                        const counters = entry.target.querySelectorAll('.counter');
-                        counters.forEach(counter => {
-                            if (counter.dataset.animated) return;
-                            counter.dataset.animated = 'true';
-
-                            const target = +counter.getAttribute('data-target') || 0;
-                            const suffix = counter.getAttribute('data-suffix') || '';
-                            const duration = 1500;
-                            let start = null;
-                            const step = (timestamp) => {
-                                if (!start) start = timestamp;
-                                const progress = Math.min((timestamp - start) / duration, 1);
-                                let current = Math.floor(progress * target);
-                                counter.textContent = current + (suffix && progress === 1 ? suffix : '');
-                                if (progress < 1) {
-                                    window.requestAnimationFrame(step);
-                                } else {
-                                    if (suffix) {
-                                        // special case for turnaround time to show range
-                                        if (target === 35 && suffix === 'min') {
-                                            counter.textContent = '30-40' + suffix;
-                                        } else {
-                                            counter.textContent = target + suffix;
-                                        }
-                                    } else {
-                                        counter.textContent = target;
-                                    }
-                                }
-                            };
-                            window.requestAnimationFrame(step);
-                        });
-
-                        const liquidCircles = entry.target.querySelectorAll('.liquid-circle');
-                        liquidCircles.forEach(circle => {
-                            if (circle.dataset.animated) return;
-                            circle.dataset.animated = 'true';
-
-                            const fillPercentage = circle.getAttribute('data-fill') || '0';
-                            const liquidFill = circle.querySelector('.liquid-fill');
-                            if(liquidFill) {
-                                liquidFill.style.height = `${fillPercentage}%`;
-                            }
-                        });
-
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            animatedElements.forEach(el => {
-                observer.observe(el);
+        // Modal for Gallery
+        const modal = document.getElementById('modal');
+        const modalImg = document.getElementById('modal-img');
+        
+        document.querySelectorAll('.gallery-item').forEach(img => {
+            img.addEventListener('click', () => {
+                modalImg.src = img.src;
+                modal.classList.remove('hidden');
             });
-
-            // Image modal logic
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('modalImage');
-            const closeModal = document.getElementById('closeModal');
-
-            document.querySelectorAll('.gallery-image').forEach(img => {
-                img.addEventListener('click', (e) => {
-                    const src = e.currentTarget.getAttribute('src');
-                    modalImg.setAttribute('src', src);
-                    modal.classList.remove('hidden');
-                });
-            });
-
-            closeModal.addEventListener('click', () => {
-                modal.classList.add('hidden');
-                modalImg.removeAttribute('src');
-            });
-
-            modal.addEventListener('click', (e) => {
-                // if user clicks the backdrop (not the image), close
-                if (e.target === modal || e.target === modalImg) {
-                    modal.classList.add('hidden');
-                    modalImg.removeAttribute('src');
-                }
-            });
-
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    if (!modal.classList.contains('hidden')) {
-                        modal.classList.add('hidden');
-                        modalImg.removeAttribute('src');
-                    }
-                }
-            });
-
+        });
+        
+        document.getElementById('close-modal').addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+        
+        modal.addEventListener('click', (e) => {
+            if(e.target === modal) modal.classList.add('hidden');
         });
     </script>
 </body>
 </html>
-
-
-
